@@ -6,15 +6,21 @@
         "preview": "vite preview"
     },
     "devDependencies": {
+        "@vitejs/plugin-vue": "^4.6.2",
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
         "sass": "^1.58.3",
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@tiptap/extension-placeholder": "^3.0.7",
+        "@tiptap/starter-kit": "^3.0.7",
+        "@tiptap/vue-3": "^3.0.7",
         "@vitejs/plugin-basic-ssl": "^1.0.1",
         "bootstrap": "^5.0.1",
         "bootstrap-select": "^1.13.18",
-        "compass-mixins": "^0.12.12"
+        "ckeditor5": "^46.0.0",
+        "compass-mixins": "^0.12.12",
+        "vue": "^3.5.18"
     }
 }

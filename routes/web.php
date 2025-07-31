@@ -36,17 +36,28 @@ use App\Http\Livewire\DocumentCustody\Index as CustodyIndex;
 use App\Http\Livewire\Notifications\Index as NotificationsIndex;
 use App\Http\Livewire\ControlPanel\Index as CtrlIndex;
 use App\Http\Livewire\ControlPanel\History as CtrlHistory;
-use App\Http\Livewire\BulkMessages\Index as BulkMessagesIndex;
 use App\Http\Livewire\MonitorJobs\Index as JobsIndex;
 use App\Http\Livewire\MonitorJobs\Show as JobsShow;
 use App\Http\Livewire\MonitorJobs\Failed as JobsFailed;
+use App\Http\Livewire\Design\Sandbox as DesignSandbox;
+use App\Http\Livewire\Letters\Index as LettersIndex;
+use App\Http\Livewire\Letters\Show as LettersShow;
+use App\Http\Livewire\Letters\Verify as LettersVerify;
+use App\Http\Livewire\Letters\Design as LettersDesign;
+use Illuminate\Support\Facades\Route;
 
-// Only routes that match the above use clauses are kept
+
+//Open to all
+Route::get('/ccm-chapisho/onesha/{serial_number}', LettersVerify::class)->name('letter.verify');
+
+Route::get('/', function () {
+    return redirect()->away('https://www.google.com');
+})->middleware('guest');
 
 // Guest Only
 Route::group(['middleware' => ['guest']], function() {
     Route::middleware(['throttle:three-per-minute'])
-    ->get('/login', Login::class)
+    ->get('/20253107', Login::class)
     ->name('login');
 });
 
@@ -55,8 +66,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Dashboard
     Route::get('/dashboard', DashboardIndex::class)->name('dashboard');
-    Route::get('/', DashboardIndex::class)->name('home');
-    Route::get('/home', DashboardIndex::class);
+    Route::get('/20253007', DashboardIndex::class)->name('home');
+    Route::get('/', DashboardIndex::class);
+
+    // Jobs Monitoring
+    Route::get('/letters/show/{serial_number}', LettersShow::class)->name('letter.show');
+    Route::get('/letters/index', LettersIndex::class)->name('letter.index');
+    Route::get('/letters/design', LettersDesign::class)->name('letter.design');
 
     // Jobs Monitoring
     Route::get('/jobs/show/{job}', JobsShow::class)->name('jobs.show');
@@ -101,11 +117,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/control-panel/index', CtrlIndex::class)->name('control-panel.index');
     Route::get('/control-panel/history', CtrlHistory::class)->name('control-panel.history');
 
-    // Bulk Messages
-    Route::get('/bulk-messages', BulkMessagesIndex::class)->name('bulk-messages.index');
-    Route::post('/bulk-messages', BulkMessagesIndex::class)->name('bulk-messages.store');
-    Route::put('/bulk-messages', BulkMessagesIndex::class)->name('bulk-messages.delete');
-
     // Document Custody
     Route::get('/documents/custody', CustodyIndex::class)->name('documents-custody.index');
     Route::put('/documents/custody', CustodyIndex::class)->name('documents-custody.delete');
@@ -113,6 +124,7 @@ Route::group(['middleware' => ['auth']], function() {
     // Printing
     Route::get('print/audit-log',[PrintController::class,'printAuditLog'])->name('audit.general.print');
     Route::get('print/user/audit-log/{user}',[PrintController::class,'printAuditLog'])->name('audit.user.print');
+    Route::get('print/letter/{letter}',[PrintController::class,'downloadLetter'])->name('letter.download');
 
     // DocumentsController routes
     Route::get('/documents/download/{document}', [DocumentsController::class,'downloadDocument'])->name('documents.download');

@@ -49,30 +49,29 @@
             </div>
         </li>
 
-        @if (auth()->user()->canany(['bulk-messages.index', 'bulk-messages.store', 'bulk-messages.delete']))
+        @if (auth()->user()->canany(['letter.index', 'letter.verify']))
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#bulk-messages" aria-expanded="false"
                     aria-controls="bulk-messages">
-                    <span class="menu-title">Messages Dashboard</span>
+                    <span class="menu-title">
+                        Letters Manager
+                    </span>
                     <i class="menu-arrow"></i>
                     <i class="mdi mdi-message-reply-text menu-icon"></i>
                 </a>
                 <div class="collapse" id="bulk-messages">
                     <ul class="nav flex-column sub-menu">
-                        @if (auth()->user()->can('bulk-messages.index'))
+                        @if (auth()->user()->can('letter.index'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('bulk-messages.index') }}">
-                                    Compose
+                                <a class="nav-link" href="{{ route('letter.index') }}">
+                                    Letters
                                 </a>
                             </li>
+                        @endif
+                        @if (auth()->user()->can('letter.design'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('bulk-messages.index') }}">
-                                    Drafts
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('bulk-messages.index') }}">
-                                    Sent
+                                <a class="nav-link" href="{{ route('letter.design') }}">
+                                    Design Letter
                                 </a>
                             </li>
                         @endif
@@ -81,26 +80,6 @@
             </li>
         @endif
 
-        @if (auth()->user()->canany(['documents-custody.index']))
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#hr" aria-expanded="false" aria-controls="hr">
-                    <span class="menu-title">Human Resources</span>
-                    <i class="menu-arrow"></i>
-                    <i class="mdi mdi-account-box-outline menu-icon"></i>
-                </a>
-                <div class="collapse" id="hr">
-                    <ul class="nav flex-column sub-menu">
-                        @if (auth()->user()->can('documents-custody.index'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('documents-custody.index') }}">
-                                    Documents Custody
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </li>
-        @endif
 
         @if (auth()->user()->canany(['users', 'role.index', 'permissions']))
             <li class="nav-item">

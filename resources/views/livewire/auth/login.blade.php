@@ -2,9 +2,9 @@
     <div class="col-md-6 mx-auto">
         <div class="auth-form-light text-left p-5">
 
-            <div class="brand-logo">
+            {{-- <div class="brand-logo">
                 <img src="{{ asset('../../assets/images/logo/logo.png') }}">
-            </div>
+            </div> --}}
 
             <h4 class="text-primary">
                 {{ config('app.name') }}

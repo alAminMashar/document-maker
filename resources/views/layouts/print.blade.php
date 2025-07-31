@@ -2,15 +2,20 @@
 <html lang="en">
 
 <head>
-    <title>Document Print</title>
+    <title>{{ $letter->serial_number }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
     @include('livewire.shared.print-styles')
 </head>
 
-<body class="w-90 ml-5">
+<body>
     @include('livewire.shared.letterhead-top')
-    @yield('content')
-    @include('livewire.shared.normal-stamp')
+
+    <div class="content w-90 ml-5">
+        @yield('content')
+    </div>
+
+    @include('livewire.shared.letterhead-bottom')
 </body>
 
 </html>

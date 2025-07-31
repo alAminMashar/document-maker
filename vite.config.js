@@ -1,20 +1,24 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
     build: {
-    sourcemap: true
+        sourcemap: true
     },
     plugins: [
-        // basicSsl(),
         laravel({
-            input: ['resources/assets/scss/style.scss'],
-            output:['/public/build/app.css'],
+            input: [
+                'resources/assets/scss/style.scss',
+                'resources/assets/js/app.js'
+            ],
             refresh: true,
         }),
+        vue(),
     ],
-    // server: {
-    //     https: false,
-    //     host: 'document-maker.test',
-    // }
+    server: {
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
+    }
 });
