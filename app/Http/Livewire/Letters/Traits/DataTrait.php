@@ -7,12 +7,12 @@ use Auth;
 
 trait DataTrait{
 
-    public $current_user, $users;
+    public $current_user_id, $users;
 
     public function mountData()
     {
 
-        $this->current_user = Auth::user();
+        $this->current_user_id = Auth::user()->id;
 
         $this->users = User::where('active', '=', 1)
         ->orderBy('name', 'ASC')

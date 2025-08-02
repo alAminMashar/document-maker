@@ -102,7 +102,7 @@
         'author' => 'William Butler Yeats',
       ),
     ),
-    'name' => 'Shield Dashboard',
+    'name' => 'Document Maker',
     'company_tagline' => 'Your Home of Security Services',
     'phone' => '+254799147582',
     'email' => 'info@shieldmaster.africa',
@@ -358,7 +358,7 @@
         'driver' => 'octane',
       ),
     ),
-    'prefix' => 'shield_dashboard_cache_',
+    'prefix' => 'document_maker_cache_',
   ),
   'cors' => 
   array (
@@ -457,7 +457,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'shield_dashboard_database_',
+        'prefix' => 'document_maker_database_',
       ),
       'default' => 
       array (
@@ -828,7 +828,7 @@
     'from' => 
     array (
       'address' => 'alamin.mashar@gmail.com',
-      'name' => 'Shield Dashboard',
+      'name' => 'Document Maker',
     ),
     'markdown' => 
     array (
@@ -1061,7 +1061,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'shield_dashboard_session',
+    'cookie' => 'document_maker_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
@@ -1142,7 +1142,7 @@
     'activate_personal_relief' => true,
     'personal_relief' => 2400,
     'paginate' => 10,
-    'name' => 'Shield Dashboard',
+    'name' => 'Document Maker',
     'company_tagline' => 'Security that makes business sense.',
     'postal_address' => '944',
     'postal_code' => '00100, GPO',

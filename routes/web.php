@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //Open to all
-Route::get('/ccm-chapisho/onesha/{serial_number}', LettersVerify::class)->name('letter.verify');
+Route::get('/ccm-chapisho/onesha/{letter}', [PrintController::class,'downloadLetter'])->name('letter.verify');
 
 Route::get('/', function () {
     return redirect()->away('https://www.google.com');
@@ -124,6 +124,7 @@ Route::group(['middleware' => ['auth']], function() {
     // Printing
     Route::get('print/audit-log',[PrintController::class,'printAuditLog'])->name('audit.general.print');
     Route::get('print/user/audit-log/{user}',[PrintController::class,'printAuditLog'])->name('audit.user.print');
+    Route::get('print/letter/{letter}',[PrintController::class,'downloadLetter'])->name('letter.download');
     Route::get('print/letter/{letter}',[PrintController::class,'downloadLetter'])->name('letter.download');
 
     // DocumentsController routes

@@ -15,11 +15,11 @@ trait FormSetupTrait{
         'serial_number'         =>  'required|unique:letters,serial_number',
         'title'                 =>  'required|unique:letters,title',
         'content'               =>  'required|min:10',
-        'signature_option_id'   =>  'required',
-        'published'             =>  'required|boolean',
+        'signature_option_id'   =>  'nullable',
         'published_at'          =>  'nullable|date',
         'published_by'          =>  'nullable|exists:users,id',
         'created_by'            =>  'nullable|exists:users,id',
+        'published'             =>  'required|boolean',
     ];
 
     public function resetFields()
@@ -31,8 +31,8 @@ trait FormSetupTrait{
         $this->published            = false;
         $this->signature_option_id  = '';
         $this->published_at         = '';
-        $this->published_by         = $this->current_user['id'];
-        $this->created_by           = $this->current_user['id'];
+        $this->published_by         = $this->current_user_id;
+        $this->created_by           = $this->current_user_id;
     }
 
     /**

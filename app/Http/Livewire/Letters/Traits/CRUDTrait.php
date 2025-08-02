@@ -76,7 +76,7 @@ trait CRUDTrait{
             'serial_number'         =>  'required|unique:letters,serial_number,'.$letter->id,
             'title'                 =>  'required|unique:letters,title,'.$letter->id,
             'content'               =>  'required|min:10',
-            'signature_option_id'   =>  'required',
+            'signature_option_id'   =>  'nullable',
             'published'             =>  'required|boolean',
             'published_at'          =>  'nullable|date',
             'published_by'          =>  'nullable|exists:users,id',

@@ -23,6 +23,12 @@
 </IfModule>
 -->
 
+
+//For debugging Add the following to the top of the index.php file in public
+
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+
 <!-- Deployment Procedure Commands -->
 Bismillah <3
 
@@ -100,5 +106,3 @@ Bismillah. You are ready for your first demonstration
 
 Setting Up Cron Jobs
 /usr/local/bin/ea-php82 /home/eoztqayy/canon-app/artisan schedule:run
-
-

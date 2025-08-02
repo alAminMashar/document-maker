@@ -62,7 +62,11 @@ class PrintController extends Controller
         ]);
 
         $file_name = ucwords($letter->serial_number) . '.pdf';
-        return $pdf->download($file_name);
+        // return $pdf->download($file_name);
+        // return $pdf->stream($file_name);
+        return response($pdf->output(), 200)
+        ->header('Content-Type', 'application/pdf')
+        ->header('Content-Disposition', 'inline; filename="letter.pdf"');
 
         return view('livewire.letters.printout.index',[
             'letter'        => $letter,
@@ -71,6 +75,32 @@ class PrintController extends Controller
             'signature'     => $this->signature,
             'qr_code'       => $qr_code
         ]);
+
+    }
+
+    public function verifyLetter($serial_number)
+    {
+
+        $letter = Letter::where('serial_number','=',$serial_number)->first();
+
+        if($letter){
+            $qrBinaryData = $this->makeQRCodeData($letter);
+            $qr_code = 'data:image/png;base64,' . base64_encode($qrBinaryData);
+
+            $pdf = PDF::loadView('livewire.letters.printout.index', [
+                'letter'        => $letter,
+                'letterhead'    => $this->letterhead,
+                'footer'        => $this->footer,
+                'signature'     => $this->signature,
+                'qr_code'       => $qr_code
+            ]);
+
+            $file_name = ucwords($letter->serial_number) . '.pdf';
+            return $pdf->download($file_name);
+
+        }else{
+            return redirect()->away('https://www.google.com');
+        }
 
     }
 
