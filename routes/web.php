@@ -9,6 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
 //Auth Routes
 use App\Http\Livewire\Auth\Login as Login;
@@ -44,29 +45,67 @@ use App\Http\Livewire\Letters\Index as LettersIndex;
 use App\Http\Livewire\Letters\Show as LettersShow;
 use App\Http\Livewire\Letters\Verify as LettersVerify;
 use App\Http\Livewire\Letters\Design as LettersDesign;
-use Illuminate\Support\Facades\Route;
+
+use App\Http\Livewire\PoliticalParty\Index as PartyIndex;
+use App\Http\Livewire\PoliticalParty\Show as PartyShow;
+
+use App\Http\Livewire\Polls\Index as PollsIndex;
+use App\Http\Livewire\Polls\Show as PollsShow;
+
+use App\Http\Livewire\Voters\Index as VotersIndex;
+use App\Http\Livewire\Voters\Show as VotersShow;
+
+use App\Http\Livewire\Candidates\Index as CandidateIndex;
+use App\Http\Livewire\Candidates\Show as CandidateShow;
+
+use App\Http\Livewire\Voters\Index as VoterIndex;
+use App\Http\Livewire\Voters\Show as VoterShow;
 
 
 //Open to all
-Route::get('/ccm-chapisho/onesha/{letter}', [PrintController::class,'downloadLetter'])->name('letter.verify');
+Route::get('/onesha/{letter}', [PrintController::class,'verifyLetter'])->name('letter.verify');
 
-Route::get('/', function () {
-    return redirect()->away('https://www.google.com');
-})->middleware('guest');
+// Route::get('/', function () {
+//     return redirect()->away('https://www.google.com');
+// })->middleware('guest');
 
 // Guest Only
 Route::group(['middleware' => ['guest']], function() {
     Route::middleware(['throttle:three-per-minute'])
-    ->get('/20253107', Login::class)
+    ->get('/login', Login::class)
     ->name('login');
 });
 
 // Auth Only
 Route::group(['middleware' => ['auth']], function() {
 
+    // Candidates
+    Route::get('/voters/{candidate}', VoterShow::class)->name('voters.show');
+    Route::get('/voters', VoterIndex::class)->name('voters.index');
+    Route::post('/voters', VoterIndex::class)->name('voters.store');
+    Route::put('/voters', VoterIndex::class)->name('voters.delete');
+
+    // Candidates
+    Route::get('/candidates/{candidate}', CandidateShow::class)->name('candidates.show');
+    Route::get('/candidates', CandidateIndex::class)->name('candidates.index');
+    Route::post('/candidates', CandidateIndex::class)->name('candidates.store');
+    Route::put('/candidates', CandidateIndex::class)->name('candidates.delete');
+
+    // Polls
+    Route::get('/polls/{poll}', PollsShow::class)->name('polls.show');
+    Route::get('/polls', PollsIndex::class)->name('polls.index');
+    Route::post('/polls', PollsIndex::class)->name('polls.store');
+    Route::put('/polls', PollsIndex::class)->name('polls.delete');
+
+    // Political Party
+    Route::get('/political-party/{party}', PartyShow::class)->name('political.party.show');
+    Route::get('/political-party', PartyIndex::class)->name('political.party.index');
+    Route::post('/political-party', PartyIndex::class)->name('political.party.store');
+    Route::put('/political-party', PartyIndex::class)->name('political.party.delete');
+
     // Dashboard
     Route::get('/dashboard', DashboardIndex::class)->name('dashboard');
-    Route::get('/20253007', DashboardIndex::class)->name('home');
+    Route::get('/home', DashboardIndex::class)->name('home');
     Route::get('/', DashboardIndex::class);
 
     // Jobs Monitoring

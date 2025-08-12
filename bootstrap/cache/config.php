@@ -784,8 +784,8 @@
         'host' => 'smtp.gmail.com',
         'port' => '25',
         'encryption' => '',
-        'username' => 'alamin.mashar@gmail.com',
-        'password' => 'jaakzicmnxsjrpvt',
+        'username' => '',
+        'password' => '',
         'timeout' => NULL,
         'local_domain' => NULL,
       ),
@@ -827,7 +827,7 @@
     ),
     'from' => 
     array (
-      'address' => 'alamin.mashar@gmail.com',
+      'address' => '',
       'name' => 'Document Maker',
     ),
     'markdown' => 

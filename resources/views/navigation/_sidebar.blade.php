@@ -49,17 +49,64 @@
             </div>
         </li>
 
+
+        @if (auth()->user()->canany(['political.party.index', 'candidate.index', 'polls.index', 'voters.index']))
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#polls-menu" aria-expanded="false"
+                    aria-controls="polls-menu">
+                    <span class="menu-title">
+                        Manage Polls
+                    </span>
+                    <i class="menu-arrow"></i>
+                    <i class="mdi mdi-vector-selection menu-icon"></i>
+                </a>
+                <div class="collapse" id="polls-menu">
+                    <ul class="nav flex-column sub-menu">
+                        @if (auth()->user()->can('polls.index'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('polls.index') }}">
+                                    Polls
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('candidates.index'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('candidates.index') }}">
+                                    Candidates
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('voters.index'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('voters.index') }}">
+                                    Voters
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->can('political.party.index'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('political.party.index') }}">
+                                    Parties
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </li>
+        @endif
+
+
         @if (auth()->user()->canany(['letter.index', 'letter.verify']))
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#bulk-messages" aria-expanded="false"
-                    aria-controls="bulk-messages">
+                <a class="nav-link" data-bs-toggle="collapse" href="#letters" aria-expanded="false"
+                    aria-controls="letters">
                     <span class="menu-title">
                         Letters Manager
                     </span>
                     <i class="menu-arrow"></i>
                     <i class="mdi mdi-message-reply-text menu-icon"></i>
                 </a>
-                <div class="collapse" id="bulk-messages">
+                <div class="collapse" id="letters">
                     <ul class="nav flex-column sub-menu">
                         @if (auth()->user()->can('letter.index'))
                             <li class="nav-item">

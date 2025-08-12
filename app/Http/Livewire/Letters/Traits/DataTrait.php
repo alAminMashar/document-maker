@@ -11,13 +11,10 @@ trait DataTrait{
 
     public function mountData()
     {
-
         $this->current_user_id = Auth::user()->id;
-
         $this->users = User::where('active', '=', 1)
         ->orderBy('name', 'ASC')
         ->get();
-
     }
 
 }

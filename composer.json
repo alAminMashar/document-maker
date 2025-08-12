@@ -83,6 +83,9 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
+        },
+        "github-oauth": {
+            "github.com": "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"
         }
     },
     "minimum-stability": "stable",

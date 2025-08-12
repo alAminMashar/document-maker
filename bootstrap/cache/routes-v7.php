@@ -142,7 +142,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::w4F4qFcQfo2cjGA3',
+            '_route' => 'generated::ECHPKdalwq6iWy1E',
           ),
           1 => NULL,
           2 => 
@@ -162,7 +162,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::BALa1gg5vHYeIfNg',
+            '_route' => 'generated::Rvqb2rHoU6l3Ba4m',
           ),
           1 => NULL,
           2 => 
@@ -279,7 +279,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::3nY1cXcNdAvXC7Nk',
+            '_route' => 'generated::MPu7pJ4lovYRzVLX',
           ),
           1 => NULL,
           2 => 
@@ -292,13 +292,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/' => 
+      '/login' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::jbHxvaLY6xZWSifV',
+            '_route' => 'login',
           ),
           1 => NULL,
           2 => 
@@ -312,19 +312,207 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/20253107' => 
+      '/voters' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'login',
+            '_route' => 'voters.index',
           ),
           1 => NULL,
           2 => 
           array (
             'GET' => 0,
             'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'voters.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'voters.delete',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'PUT' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/candidates' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'candidates.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'candidates.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'candidates.delete',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'PUT' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/polls' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'polls.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'polls.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'polls.delete',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'PUT' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/political-party' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'political.party.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'political.party.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'political.party.delete',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'PUT' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -352,13 +540,33 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/20253007' => 
+      '/home' => 
       array (
         0 => 
         array (
           0 => 
           array (
             '_route' => 'home',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'generated::PQ0BnBqvXoyvMW5I',
           ),
           1 => NULL,
           2 => 
@@ -945,7 +1153,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/livewire/message/([^/]++)(*:107)|/([^/]++)/livewire/message/([^/]++)(*:150)|/l(?|ivewire/preview\\-file/([^/]++)(*:193)|etters/show/([^/]++)(*:221))|/jobs/(?|monitors/(?|([^/]++)(*:259)|retry/([^/]++)(*:281))|show/([^/]++)(*:303))|/ccm\\-chapisho/onesha/([^/]++)(*:342)|/roles/([^/]++)(*:365)|/help\\-guide/([^/]++)(*:394)|/users/([^/]++)(*:417)|/activity/([^/]++)(*:443)|/print/(?|user/audit\\-log/([^/]++)(*:485)|letter/([^/]++)(*:508))|/documents/d(?|ownload/([^/]++)(*:548)|elete/([^/]++)(*:570)))/?$}sDu',
+      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/livewire/message/([^/]++)(*:107)|/([^/]++)/livewire/message/([^/]++)(*:150)|/l(?|ivewire/preview\\-file/([^/]++)(*:193)|etters/show/([^/]++)(*:221))|/jobs/(?|monitors/(?|([^/]++)(*:259)|retry/([^/]++)(*:281))|show/([^/]++)(*:303))|/onesha/([^/]++)(*:328)|/voters/([^/]++)(*:352)|/candidates/([^/]++)(*:380)|/p(?|ol(?|ls/([^/]++)(*:409)|itical\\-party/([^/]++)(*:439))|rint/(?|user/audit\\-log/([^/]++)(*:480)|letter/([^/]++)(*:503)))|/roles/([^/]++)(*:528)|/help\\-guide/([^/]++)(*:557)|/users/([^/]++)(*:580)|/activity/([^/]++)(*:606)|/documents/d(?|ownload/([^/]++)(*:645)|elete/([^/]++)(*:667)))/?$}sDu',
     ),
     3 => 
     array (
@@ -1154,7 +1362,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      342 => 
+      328 => 
       array (
         0 => 
         array (
@@ -1164,7 +1372,7 @@ app('router')->setCompiledRoutes(
           ),
           1 => 
           array (
-            0 => 'serial_number',
+            0 => 'letter',
           ),
           2 => 
           array (
@@ -1177,17 +1385,17 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      365 => 
+      352 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'role.show',
+            '_route' => 'voters.show',
           ),
           1 => 
           array (
-            0 => 'role',
+            0 => 'candidate',
           ),
           2 => 
           array (
@@ -1200,17 +1408,17 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      394 => 
+      380 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'help-guide.show',
+            '_route' => 'candidates.show',
           ),
           1 => 
           array (
-            0 => 'article',
+            0 => 'candidate',
           ),
           2 => 
           array (
@@ -1223,17 +1431,17 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      417 => 
+      409 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'users.profile',
+            '_route' => 'polls.show',
           ),
           1 => 
           array (
-            0 => 'user',
+            0 => 'poll',
           ),
           2 => 
           array (
@@ -1246,17 +1454,17 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      443 => 
+      439 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'activity.show',
+            '_route' => 'political.party.show',
           ),
           1 => 
           array (
-            0 => 'activity',
+            0 => 'party',
           ),
           2 => 
           array (
@@ -1269,7 +1477,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      485 => 
+      480 => 
       array (
         0 => 
         array (
@@ -1292,7 +1500,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      508 => 
+      503 => 
       array (
         0 => 
         array (
@@ -1315,7 +1523,99 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      548 => 
+      528 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'role.show',
+          ),
+          1 => 
+          array (
+            0 => 'role',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      557 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'help-guide.show',
+          ),
+          1 => 
+          array (
+            0 => 'article',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      580 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'users.profile',
+          ),
+          1 => 
+          array (
+            0 => 'user',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      606 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'activity.show',
+          ),
+          1 => 
+          array (
+            0 => 'activity',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      645 => 
       array (
         0 => 
         array (
@@ -1338,7 +1638,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      570 => 
+      667 => 
       array (
         0 => 
         array (
@@ -1764,7 +2064,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::w4F4qFcQfo2cjGA3' => 
+    'generated::ECHPKdalwq6iWy1E' => 
     array (
       'methods' => 
       array (
@@ -1776,7 +2076,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
-        'as' => 'generated::w4F4qFcQfo2cjGA3',
+        'as' => 'generated::ECHPKdalwq6iWy1E',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1792,7 +2092,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::BALa1gg5vHYeIfNg' => 
+    'generated::Rvqb2rHoU6l3Ba4m' => 
     array (
       'methods' => 
       array (
@@ -1804,7 +2104,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
-        'as' => 'generated::BALa1gg5vHYeIfNg',
+        'as' => 'generated::Rvqb2rHoU6l3Ba4m',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2074,7 +2374,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::3nY1cXcNdAvXC7Nk' => 
+    'generated::MPu7pJ4lovYRzVLX' => 
     array (
       'methods' => 
       array (
@@ -2094,7 +2394,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::3nY1cXcNdAvXC7Nk',
+        'as' => 'generated::MPu7pJ4lovYRzVLX',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2117,59 +2417,21 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'ccm-chapisho/onesha/{serial_number}',
+      'uri' => 'onesha/{letter}',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'web',
         ),
-        'uses' => 'App\\Http\\Livewire\\Letters\\Verify@__invoke',
-        'controller' => 'App\\Http\\Livewire\\Letters\\Verify',
+        'uses' => 'App\\Http\\Controllers\\PrintController@verifyLetter',
+        'controller' => 'App\\Http\\Controllers\\PrintController@verifyLetter',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
         'as' => 'letter.verify',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'generated::jbHxvaLY6xZWSifV' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => '/',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'auth',
-        ),
-        'uses' => 'App\\Http\\Livewire\\Dashboard\\Index@__invoke',
-        'controller' => 'App\\Http\\Livewire\\Dashboard\\Index',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'generated::jbHxvaLY6xZWSifV',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2192,7 +2454,7 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => '20253107',
+      'uri' => 'login',
       'action' => 
       array (
         'middleware' => 
@@ -2209,6 +2471,606 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'login',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'voters.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'voters/{candidate}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Voters\\Show@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Voters\\Show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'voters.show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'voters.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'voters',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Voters\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Voters\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'voters.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'voters.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'voters',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Voters\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Voters\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'voters.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'voters.delete' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+      ),
+      'uri' => 'voters',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Voters\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Voters\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'voters.delete',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'candidates.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'candidates/{candidate}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Candidates\\Show@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Candidates\\Show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'candidates.show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'candidates.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'candidates',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Candidates\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Candidates\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'candidates.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'candidates.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'candidates',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Candidates\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Candidates\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'candidates.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'candidates.delete' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+      ),
+      'uri' => 'candidates',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Candidates\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Candidates\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'candidates.delete',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'polls.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'polls/{poll}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Polls\\Show@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Polls\\Show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'polls.show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'polls.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'polls',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Polls\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Polls\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'polls.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'polls.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'polls',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Polls\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Polls\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'polls.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'polls.delete' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+      ),
+      'uri' => 'polls',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Polls\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Polls\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'polls.delete',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'political.party.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'political-party/{party}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\PoliticalParty\\Show@__invoke',
+        'controller' => 'App\\Http\\Livewire\\PoliticalParty\\Show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'political.party.show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'political.party.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'political-party',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\PoliticalParty\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\PoliticalParty\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'political.party.index',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'political.party.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'political-party',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\PoliticalParty\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\PoliticalParty\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'political.party.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'political.party.delete' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+      ),
+      'uri' => 'political-party',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\PoliticalParty\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\PoliticalParty\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'political.party.delete',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2269,7 +3131,7 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => '20253007',
+      'uri' => 'home',
       'action' => 
       array (
         'middleware' => 
@@ -2285,6 +3147,44 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'home',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::PQ0BnBqvXoyvMW5I' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => '/',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Livewire\\Dashboard\\Index@__invoke',
+        'controller' => 'App\\Http\\Livewire\\Dashboard\\Index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'generated::PQ0BnBqvXoyvMW5I',
       ),
       'fallback' => false,
       'defaults' => 

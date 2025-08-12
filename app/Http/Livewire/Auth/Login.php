@@ -75,7 +75,7 @@ class Login extends Component
             if (Auth::attempt($credentials)) {
 
                 $this->resetFields();
-                redirect()->intended('/');
+                redirect()->intended('/dashboard');
 
                 $this->dispatchBrowserEvent('alert',[
                     "type"      =>  "success",
@@ -94,12 +94,10 @@ class Login extends Component
 
 
         } catch (\Exception $ex) {
-
             $this->dispatchBrowserEvent("alert",[
                 "type"      =>  "error",
                 "message"   =>  "Something went wrong!"
             ]);
-
         }
     }
 
