@@ -1,0 +1,80 @@
+{
+  "public/assets/images/backgrounds/2.png": {
+    "file": "assets/2-ef58a40d.png",
+    "src": "public/assets/images/backgrounds/2.png"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Bold.eot": {
+    "file": "assets/Ubuntu-Bold-0fb7a5df.eot",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Bold.eot"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Bold.ttf": {
+    "file": "assets/Ubuntu-Bold-c19e0059.ttf",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Bold.ttf"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Bold.woff": {
+    "file": "assets/Ubuntu-Bold-6d48c482.woff",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Bold.woff"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Bold.woff2": {
+    "file": "assets/Ubuntu-Bold-ee536c09.woff2",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Bold.woff2"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Light.eot": {
+    "file": "assets/Ubuntu-Light-028981c1.eot",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Light.eot"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Light.ttf": {
+    "file": "assets/Ubuntu-Light-7d814e7b.ttf",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Light.ttf"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Light.woff": {
+    "file": "assets/Ubuntu-Light-3f2c495e.woff",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Light.woff"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Light.woff2": {
+    "file": "assets/Ubuntu-Light-358422fd.woff2",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Light.woff2"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Medium.eot": {
+    "file": "assets/Ubuntu-Medium-536d4056.eot",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Medium.eot"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Medium.ttf": {
+    "file": "assets/Ubuntu-Medium-0e4b2417.ttf",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Medium.ttf"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Medium.woff": {
+    "file": "assets/Ubuntu-Medium-e0f3febf.woff",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Medium.woff"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Medium.woff2": {
+    "file": "assets/Ubuntu-Medium-58d4cf1c.woff2",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Medium.woff2"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Regular.eot": {
+    "file": "assets/Ubuntu-Regular-d43b9648.eot",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Regular.eot"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Regular.ttf": {
+    "file": "assets/Ubuntu-Regular-0fad3102.ttf",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Regular.ttf"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Regular.woff": {
+    "file": "assets/Ubuntu-Regular-2d000729.woff",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Regular.woff"
+  },
+  "resources/assets/fonts/Ubuntu/Ubuntu-Regular.woff2": {
+    "file": "assets/Ubuntu-Regular-67957add.woff2",
+    "src": "resources/assets/fonts/Ubuntu/Ubuntu-Regular.woff2"
+  },
+  "resources/assets/js/app.js": {
+    "file": "assets/app-3191fba5.js",
+    "isEntry": true,
+    "src": "resources/assets/js/app.js"
+  },
+  "resources/assets/scss/style.scss": {
+    "file": "assets/style-0f89eac9.css",
+    "isEntry": true,
+    "src": "resources/assets/scss/style.scss"
+  }
+}

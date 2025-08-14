@@ -60,17 +60,19 @@
                         @enderror
                     </div>
 
-                    <div class="form-group col-6">
-                        <label for="multiplier">
-                            Vote Multiplier
-                            <span class="text-danger fw-bold">*</span>
-                        </label>
-                        <input type="text" class="form-control @error('multiplier') is-invalid @enderror"
-                            id="multiplier" placeholder="Enter multiplier" wire:model.defer="multiplier">
-                        @error('multiplier')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    @if (auth()->user()->hasRole('Super Admin'))
+                        <div class="form-group col-6">
+                            <label for="multiplier">
+                                Vote Multiplier
+                                <span class="text-danger fw-bold">*</span>
+                            </label>
+                            <input type="text" class="form-control @error('multiplier') is-invalid @enderror"
+                                id="multiplier" placeholder="Enter multiplier" wire:model.defer="multiplier">
+                            @error('multiplier')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
 
                 <div class="row">

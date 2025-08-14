@@ -59,6 +59,37 @@
                     </div>
                 </div>
 
+                @if (auth()->user()->hasRole('Super Admin'))
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <div class="form-check form-switch ms-5">
+                                <input class="form-check-input" wire:model.defer.defer="force_target" type="checkbox"
+                                    id="force_target" @error('force_target') is-invalid @enderror>
+                                <label class="form-check-label" for="force_target">
+                                    Activate Vote Multiplier<br>
+                                    <small class="text-muted">
+                                        Leave off if multiplier
+                                    </small>
+                                </label>
+                            </div>
+                            @error('force_target')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="target_votes">
+                                Target Votes
+                                <span class="text-danger fw-bold">*</span>
+                            </label>
+                            <input type="number" class="form-control @error('target_votes') is-invalid @enderror"
+                                id="target_votes" placeholder="Enter target votes" wire:model.defer="target_votes">
+                            @error('target_votes')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row">
                     <div class="col-12" wire:loading.remove>
                         @if ($addPoll)

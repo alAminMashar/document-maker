@@ -16,7 +16,7 @@
     </td>
     <td>
 
-        @if (auth()->user()->canany(['topic.store']))
+        @if (auth()->user()->canany(['candidates.store']))
             <div class="btn-group btn-xs col" role="group">
                 <button id="actionDropDownButton{{ $candidate->id }}" type="button"
                     class="btn btn-primary btn-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,11 +29,18 @@
                             Edit
                         </button>
                     </li>
+                    <li>
+                        <button class="dropdown-item" wire:click="addDocument({{ $candidate->id }})"
+                            title="Upload Photo">
+                            <i class="mdi mdi-attachment"></i>
+                            Upload Photo
+                            </a>
+                    </li>
                 </ul>
             </div>
         @endif
 
-        @if (auth()->user()->can('topic.delete'))
+        @if (auth()->user()->can('candidates.delete'))
             <div class="btn-group btn-xs col" role="group">
                 <button id="deleteDropDownButton{{ $candidate->id }}" type="button"
                     class="btn btn-danger btn-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

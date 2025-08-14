@@ -3,6 +3,10 @@
         @if ($addCandidate || $updateCandidate)
             @include('livewire.candidates.includes.create-modal')
         @endif
+
+        @if ($addDocument)
+            @include('livewire.candidates.includes.upload-candidate-photo')
+        @endif
     </div>
 
     @include('livewire.candidates.components.search-canvas')
@@ -12,7 +16,7 @@
         <div class="card">
             <div class="card-body">
 
-                @if (!$addCandidate && auth()->user()->can('candidate.store'))
+                @if (!$addCandidate && auth()->user()->can('candidates.store'))
                     <button wire:click="addCandidate()" class="btn btn-info btn-sm float-end">
                         <i class="mdi mdi-playlist-plus"></i>
                         Add Candidate

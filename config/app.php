@@ -59,6 +59,7 @@ return [
     */
 
     'name'              =>  env('APP_NAME', 'SHIELDMASTER AFRICA'),
+    'short_name'        =>  env('SHORT_NAME', 'SHIELDMASTER AFRICA'),
     'company_tagline'   =>  'Your Home of Security Services',
     'phone'             =>  "+254799147582",
     'email'             =>  "info@shieldmaster.africa",

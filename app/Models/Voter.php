@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voter extends Model
 {
+
     use HasFactory;
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class Voter extends Model
         'device',
         'platform',
         'referer',
-        'cookier_value',
+        'cookie_value',
     ];
 
     /**

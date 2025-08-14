@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Poll extends Model
 {
@@ -18,7 +19,59 @@ class Poll extends Model
         'starting_at',
         'ending_at',
         'user_id',
+        'force_target',
+        'target_votes',
     ];
+
+    protected $hidden = [
+        'image',
+        'has_started',
+        'is_running',
+        'active',
+        'duration',
+    ];
+
+    protected $appends = ['duration'];
+
+    /**
+     * Get the duration in hours between starting_at and ending_at.
+     */
+    protected function duration(): Attribute
+    {
+        return Attribute::get(function () {
+            if (!$this->starting_at || !$this->ending_at) {
+                return null; // Return null if one date is missing
+            }
+
+            $start = Carbon::parse($this->starting_at);
+            $end   = Carbon::parse($this->ending_at);
+
+            return $start->diffInHours($end); // Always integer hours
+        });
+    }
+
+    public function getImageAttribute()
+    {
+        return 'assets/img/backgrounds/grey.png';
+    }
+
+    public function getHasStartedAttribute()
+    {
+        return $this->starting_at <= Carbon::now() ? true:false;
+    }
+
+    public function getIsRunningAttribute()
+    {
+        return $this->ending_at >= Carbon::now() ? true:false;
+    }   
+
+    public function getActiveAttribute()
+    {
+        if($this->has_started && $this->is_running){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Get all of the votes for the Poll

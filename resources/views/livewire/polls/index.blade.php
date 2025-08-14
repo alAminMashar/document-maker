@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body">
 
-                @if (!$addPoll && auth()->user()->can('poll.store'))
+                @if (!$addPoll && auth()->user()->can('polls.store'))
                     <button wire:click="addPoll()" class="btn btn-info btn-sm float-end">
                         <i class="mdi mdi-playlist-plus"></i>
                         Add Poll

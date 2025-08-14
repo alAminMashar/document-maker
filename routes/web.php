@@ -61,13 +61,19 @@ use App\Http\Livewire\Candidates\Show as CandidateShow;
 use App\Http\Livewire\Voters\Index as VoterIndex;
 use App\Http\Livewire\Voters\Show as VoterShow;
 
+use App\Http\Livewire\FrontEnd\Index as FrontendIndex;
+use App\Http\Livewire\FrontEnd\Polls as FrontendPolls;
+use App\Http\Livewire\FrontEnd\PollShow as FrontendPollShow;
+
+
+
+Route::get('/', FrontendIndex::class)->name('/');
+Route::get('/home', FrontendIndex::class)->name('home');
+Route::get('/ongoing/polls/{poll}', FrontendPollShow::class)->name('frontend.polls.show');
+Route::get('/ongoing/polls', FrontendPolls::class)->name('frontend.polls');
 
 //Open to all
 Route::get('/onesha/{letter}', [PrintController::class,'verifyLetter'])->name('letter.verify');
-
-// Route::get('/', function () {
-//     return redirect()->away('https://www.google.com');
-// })->middleware('guest');
 
 // Guest Only
 Route::group(['middleware' => ['guest']], function() {
@@ -105,8 +111,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Dashboard
     Route::get('/dashboard', DashboardIndex::class)->name('dashboard');
-    Route::get('/home', DashboardIndex::class)->name('home');
-    Route::get('/', DashboardIndex::class);
 
     // Jobs Monitoring
     Route::get('/letters/show/{serial_number}', LettersShow::class)->name('letter.show');
@@ -169,7 +173,7 @@ Route::group(['middleware' => ['auth']], function() {
     // DocumentsController routes
     Route::get('/documents/download/{document}', [DocumentsController::class,'downloadDocument'])->name('documents.download');
     Route::get('/documents/delete/{document}', [DocumentsController::class,'deleteDocument'])->name('documents.delete');
-    Route::post('/documents/custody/store', [DocumentsController::class,'storeEmployeeDocument'])->name('documents-custody.store');
+    Route::post('/candidate/photo/upload', [DocumentsController::class,'storeCandidatePhoto'])->name('candidate.photo.store');
 
     // ExportsController routes
     Route::get('export/users', [ExportsController::class, 'exportUsers'])->name('export.users');
@@ -183,3 +187,7 @@ Route::group(['middleware' => ['auth']], function() {
     // SMS
     Route::get('/sms/sandbox', [SmsController::class,'sendMessage'])->name('sms.sandbox');
 });
+
+// Route::get('/', function () {
+//     return redirect()->away('https://www.google.com');
+// })->middleware('guest');

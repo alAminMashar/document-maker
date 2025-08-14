@@ -1,0 +1,2722 @@
+@import url(https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=wap);
+@import url(https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap);
+
+@font-face {
+    font-family: "Fontastique-Fontastique", sans-serif;
+    src: url(/fonts/fontastique.woff?06a877f96c4b0baa1a15cc296d5cf835) format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*--------------------------------------------------------------------------
+#
+#	 Writing methods that make it css reusable.
+#
+--------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------
+#  My QUotes I do this in every long term css frogie file
+#
+#  Failure is simply the opportunity to begin again, this time more intelligently. - Henry Ford
+#
+#  Great works are performed not by strength, but perseverance. Dr Samuel Johnson
+#
+#
+# List of mixins and their usage manual
+--------------------------------------------------------------------------*/
+.loader {
+    position: absolute;
+    height: auto;
+    min-height: 200px;
+    max-height: 200px;
+    width: auto;
+    min-width: 200px;
+    max-width: 200px;
+    margin: 5% 20% 0%;
+}
+
+.results-slot {
+    position: absolute;
+    z-index: 990;
+    width: auto;
+    min-width: 100%;
+    max-width: 90%;
+    height: auto;
+    min-height: 250px;
+    max-height: 450px;
+    top: 43px;
+    left: 0px;
+}
+
+.hidden {
+    display: none;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.printable-document {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 900px;
+    max-width: 900px;
+    height: auto;
+    min-height: 842px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: white;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.printable-document else {
+    max-width: none;
+}
+
+.printable-document else {
+    max-height: none;
+}
+
+.grid-span {
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.d-none {
+    display: none;
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+.margin-5 {
+    margin: 2.5px 0px 2.5px;
+}
+
+.margin-55 {
+    margin: 10px 15px 10px;
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.padding-5 {
+    padding: 2.5px 5px 2.5;
+}
+
+.box50 {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    height: auto;
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.box100 {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100px;
+    max-width: 100px;
+    height: auto;
+    min-height: 100px;
+    max-height: 100px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.box150 {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 150px;
+    max-width: 150px;
+    height: auto;
+    min-height: 150px;
+    max-height: 150px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.box200 {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 200px;
+    max-width: 200px;
+    height: auto;
+    min-height: 200px;
+    max-height: 200px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.box250 {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 250px;
+    max-width: 250px;
+    height: auto;
+    min-height: 250px;
+    max-height: 250px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.box300 {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 300px;
+    max-width: 300px;
+    height: auto;
+    min-height: 300px;
+    max-height: 300px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.debug {
+    border: thin dashed currentColor;
+}
+
+.grid-pad-1 {
+    grid-column-gap: 1 "vh";
+}
+
+.grid-pad-2 {
+    grid-column-gap: 2 "vh";
+}
+
+.grid-pad-3 {
+    grid-column-gap: 3 "vh";
+}
+
+.grid-pad-4 {
+    grid-column-gap: 4 "vh";
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(auto, 50%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, 33.3333333333%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 25%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(auto, 20%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-6 {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(auto, 16.6666666667%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-7 {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(auto, 14.2857142857%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-8 {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(auto, 12.5%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-9 {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(auto, 11.1111111111%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-10 {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(auto, 10%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-11 {
+    display: grid;
+    grid-template-columns: repeat(11, minmax(auto, 9.0909090909%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(auto, 8.3333333333%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.noMinHeight {
+    height: auto;
+    min-height: none;
+}
+
+.noMaxHeight {
+    height: auto;
+    max-height: none;
+}
+
+.branding {
+    top: 2.5vh;
+    left: 0vh;
+    z-index: 9999;
+    position: absolute;
+    opacity: 0.8;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50%;
+    max-width: 50%;
+    height: auto;
+    min-height: 30px;
+    max-height: 30px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    padding: 0vh 5% 0vh;
+}
+
+.branding else {
+    max-width: none;
+}
+
+.branding else {
+    max-height: none;
+}
+
+.branding img {
+    box-sizing: border-box;
+    width: auto;
+    min-width: auto;
+    height: auto;
+    min-height: 30px;
+    max-height: 30px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.branding img else {
+    max-width: none;
+}
+
+.branding img else {
+    max-height: none;
+}
+
+.required {
+    position: absolute;
+    top: -10px;
+}
+
+.row-header {
+    font-size: 5rem;
+    font-family: "Assistant", Arial, sans-serif;
+    font-weight: 900;
+}
+
+.row-sub-header {
+    font-size: 1.5rem;
+    font-family: "Assistant", Arial, sans-serif;
+    font-weight: 400;
+}
+
+/* SIDEBAR */
+.sidebar-section {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Super important! */
+}
+
+.sidebar-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    /* Position the items */
+}
+
+.sidebar-item:nth-child(2) {
+    top: 25%;
+}
+
+.sidebar-item:nth-child(3) {
+    top: 50%;
+}
+
+.sidebar-item:nth-child(4) {
+    top: 75%;
+}
+
+.make-me-sticky {
+    position: sticky;
+    top: 0;
+    padding: 0 15px;
+}
+
+.side-cards {
+    /* Cross-Browser Support */
+    position: relative;
+    /* I am the fallback */
+    /* Give it everything you got! (use an auto prefixer...) */
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 0;
+    /* Required  */
+}
+
+.org-logo {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 200px;
+    max-width: 200px;
+    height: auto;
+    min-height: 200px;
+    max-height: 200px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.org-logo else {
+    max-width: none;
+}
+
+.org-logo else {
+    max-height: none;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    display: none;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked+.slider {
+    background-color: #2196f3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.sidebar {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 150px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #455a63;
+    overflow: hidden;
+    padding: 5px 10px 5px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.6);
+}
+
+.sidebar else {
+    max-width: none;
+}
+
+.sidebar else {
+    max-height: none;
+}
+
+.sidebar li a {
+    color: #ffffff;
+}
+
+.sidebar li :hover {
+    color: #03a9f4;
+}
+
+.sidebar hr {
+    border-top: thin solid rgba(255, 255, 255, 0.35);
+}
+
+.iconize {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 30px;
+    max-width: 30px;
+    height: auto;
+    min-height: 30px;
+    max-height: 30px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: thin solid #455a63;
+}
+
+.iconize img {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    height: auto;
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.icon {
+    overflow: hidden;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 40px;
+    max-width: 40px;
+    height: auto;
+    min-height: 40px;
+    max-height: 40px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.icon img {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 40px;
+    max-width: 40px;
+    height: auto;
+    min-height: 40px;
+    max-height: 40px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.help-pic img {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 300px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.help-pic img else {
+    max-height: none;
+}
+
+.flexing {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 10px 0px 10px;
+}
+
+.darth-panel {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 100px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: rgba(69, 90, 99, 0.8);
+    overflow: hidden;
+    box-shadow: 1px 1px 3px 1px #455a63;
+    padding: 10px 5px 10px;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.darth-panel else {
+    max-width: none;
+}
+
+.darth-panel else {
+    max-height: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.results-section {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 90%;
+    max-width: 90%;
+    height: auto;
+    min-height: 350px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    overflow: hidden;
+    margin: 0px 5% 0px;
+}
+
+.results-section else {
+    max-width: none;
+}
+
+.results-section else {
+    max-height: none;
+}
+
+.input-group-addon {
+    cursor: pointer;
+}
+
+.top {
+    top: 0px;
+}
+
+.bottom {
+    bottom: 0px;
+}
+
+.page-defn {
+    width: auto;
+    min-width: 96%;
+    max-width: 96%;
+    margin: 0px 2% auto;
+    text-align: center;
+    border: none;
+}
+
+.page-defn .title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin: 2px 0px 5px;
+}
+
+.page-defn .sub-title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.page-defn hr {
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    border: thin solid currentColor;
+}
+
+.page-text {
+    font-size: 1.9rem;
+}
+
+.boxed {
+    border: thin solid currentColor;
+}
+
+.snap-start {
+    scroll-snap-align: start;
+}
+
+.wrapper {
+    margin: 51.3px 0vw 0vh;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.back-to-top {
+    display: none;
+    opacity: 0.85;
+    right: 20px;
+    bottom: 40%;
+    position: fixed;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    height: auto;
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    z-index: 999;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(3, 169, 244, 0.6);
+    border: thin solid #03a9f4;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top img {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    height: auto;
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: -2px -1px 0px;
+    transform: rotate(180deg);
+}
+
+.back-to-top :hover {
+    opacity: 1;
+    background-color: white;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 50%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-index: 0;
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.scroll-to {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    height: auto;
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(3, 169, 244, 0.6);
+    border: thin solid #03a9f4;
+    box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-to img {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    height: auto;
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.scroll-to :hover {
+    opacity: 0.7;
+    background-color: white;
+}
+
+.bunisha {
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: lowercase;
+    font-family: "Varela Round", Arial, sans-serif;
+}
+
+.bunisha sup {
+    top: 20px;
+    position: absolute;
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+.pull-top {
+    position: absolute;
+    top: 0px;
+}
+
+.pull-bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
+.max-width {
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.hr-color {
+    border-color: inherit;
+}
+
+.hr-invisible {
+    border-width: 0px;
+}
+
+.hr-thin {
+    border-color: inherit;
+    border-width: 0.5px;
+}
+
+.hr-med {
+    border-color: inherit;
+    border-width: 5px;
+}
+
+.hr-thick {
+    border-color: inherit;
+    border-width: 10px;
+}
+
+.shadow-me {
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.35);
+}
+
+.soften {
+    border-radius: 4px;
+}
+
+.rounded {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.fade-20 {
+    opacity: 0.8;
+}
+
+.fade-40 {
+    opacity: 0.6;
+}
+
+.fade-60 {
+    opacity: 0.4;
+}
+
+.fade-80 {
+    opacity: 0.2;
+}
+
+.span50 {
+    width: auto;
+    min-width: 60%;
+    max-width: 60%;
+    margin: 0% 25% 0%;
+    box-sizing: border-box;
+}
+
+.span60 {
+    width: auto;
+    min-width: 60%;
+    max-width: 60%;
+    margin: 0% 20% 0%;
+    box-sizing: border-box;
+}
+
+.span70 {
+    width: auto;
+    min-width: 70%;
+    max-width: 70%;
+    margin: 0% 15% 0%;
+    box-sizing: border-box;
+}
+
+.span80 {
+    width: auto;
+    min-width: 80%;
+    max-width: 80%;
+    margin: 0% 10% 0%;
+    box-sizing: border-box;
+}
+
+.span90 {
+    width: auto;
+    min-width: 90%;
+    max-width: 90%;
+    margin: 0% 5% 0%;
+    box-sizing: border-box;
+}
+
+.span96 {
+    width: auto;
+    min-width: 96%;
+    max-width: 96%;
+    margin: 0% 2% 0%;
+    box-sizing: border-box;
+}
+
+.span100 {
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    margin: 0% 0% 0%;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 320px) {
+
+    .text-4,
+    .text-5,
+    .text-6,
+    .text-7,
+    .text-8,
+    .text-9 {
+        font-size: 3rem;
+    }
+
+    .span60,
+    .span70,
+    .span80,
+    .span90,
+    .span96,
+    .span100,
+    .wrapper {
+        width: auto;
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0px;
+        box-sizing: border-box;
+        padding: 0% 0% 0%;
+        margin: 0vh 0vw 0vh;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .grid-5,
+    .grid-6,
+    .grid-7,
+    .grid-8,
+    .grid-9,
+    .grid-10,
+    .grid-11,
+    .grid-12 {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(auto, 100%));
+        grid-column-gap: 0.5vw;
+        grid-row-gap: 0.5vh;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    .text-4,
+    .text-5,
+    .text-6,
+    .text-7,
+    .text-8,
+    .text-9 {
+        font-size: 3rem;
+    }
+
+    .span60,
+    .span70,
+    .span80,
+    .span90,
+    .span96,
+    .span100,
+    .wrapper {
+        width: auto;
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0px;
+        box-sizing: border-box;
+        padding: 0% 0% 0%;
+        margin: 0vh 0vw 0vh;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .grid-5,
+    .grid-6,
+    .grid-7,
+    .grid-8,
+    .grid-9,
+    .grid-10,
+    .grid-11,
+    .grid-12 {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(auto, 100%));
+        grid-column-gap: 0.5vw;
+        grid-row-gap: 0.5vh;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .text-4,
+    .text-5,
+    .text-6,
+    .text-7,
+    .text-8,
+    .text-9 {
+        font-size: 3rem;
+    }
+
+    .span60,
+    .span70,
+    .span80,
+    .span90,
+    .span96,
+    .span100,
+    .wrapper {
+        width: auto;
+        min-width: 100%;
+        max-width: 100%;
+        margin: 0px;
+        box-sizing: border-box;
+        padding: 0% 0% 0%;
+        margin: 0vh 0vw 0vh;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .grid-5,
+    .grid-6,
+    .grid-7,
+    .grid-8,
+    .grid-9,
+    .grid-10,
+    .grid-11,
+    .grid-12 {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(auto, 100%));
+        grid-column-gap: 0.5vw;
+        grid-row-gap: 0.5vh;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+body {
+    position: relative;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: auto;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: whitesmoke;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+body else {
+    max-width: none;
+}
+
+body else {
+    max-height: none;
+}
+
+body * {
+    font-family: "Assistant", Arial, sans-serif;
+}
+
+.primary {
+    color: #03a9f4;
+}
+
+.warning {
+    color: #fc823f;
+}
+
+.danger {
+    color: #f44336;
+}
+
+.night {
+    color: black;
+}
+
+.medium {
+    color: #212121;
+}
+
+.mist {
+    color: #676f6f;
+}
+
+.accent-bg {
+    background-color: #fc823f;
+}
+
+.primary-bg {
+    background-color: #03a9f4;
+}
+
+.thick {
+    font-weight: 700;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+.up-me {
+    text-transform: uppercase;
+}
+
+.camel-me {
+    text-transform: capitalize;
+}
+
+.down-me {
+    text-transform: lowercase;
+}
+
+.leave-me {
+    text-transform: none;
+}
+
+.cta {
+    display: inline-block;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 150px;
+    height: auto;
+    min-height: 45px;
+    max-height: 45px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    overflow: hidden;
+    line-height: 45px;
+    padding: 0px 15px 0px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.6rem;
+    text-align: center;
+    text-transform: capitalize;
+    border: 1px solid transparent;
+    overflow: visible;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.cta else {
+    max-width: none;
+}
+
+.cta else {
+    max-height: none;
+}
+
+.cta-group {
+    overflow: visible;
+    padding: 0vh;
+}
+
+.cta-group .cta {
+    width: auto;
+    min-width: 30%;
+    max-width: 30%;
+    margin: 0vh 1% 0vh;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.cta-group .btn {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    min-height: 44px;
+    max-height: 44px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    overflow: hidden;
+    border-radius: 4px;
+    line-height: 44px;
+}
+
+.cta-group .btn else {
+    max-width: none;
+}
+
+.cta-group .btn else {
+    max-height: none;
+}
+
+.cta-group .dropdown {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 30%;
+    max-width: 30%;
+    height: auto;
+    min-height: 45px;
+    max-height: 45px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 0vh 1% 0vh;
+    overflow: visible;
+}
+
+.cta-group .dropdown else {
+    max-width: none;
+}
+
+.cta-group .dropdown else {
+    max-height: none;
+}
+
+.cta-group .dropdown .dropdown-menu {
+    z-index: 9999;
+    overflow: visible;
+}
+
+.cta-group .cta,
+.cta-group .dropdown {
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+/*-------------
+# .cta themes
+--------------*/
+.cta-primary {
+    color: #ffffff;
+    background-color: #03a9f4;
+}
+
+.cta-primary:hover {
+    color: #03a9f4;
+    background-color: transparent;
+    border-color: currentColor;
+}
+
+.cta-primary-light {
+    color: #03a9f4;
+    background-color: transparent;
+    border-color: currentColor;
+}
+
+.cta-primary-light:hover {
+    color: #ffffff;
+    background-color: #03a9f4;
+    border-color: transparent;
+}
+
+.cta-danger {
+    color: #ffffff;
+    background-color: #f44336;
+}
+
+.cta-danger:hover {
+    color: #f44336;
+    background-color: transparent;
+    border-color: currentColor;
+}
+
+.cta-danger-light {
+    color: #f44336;
+    background-color: transparent;
+    border-color: currentColor;
+}
+
+.cta-danger-light:hover {
+    color: #ffffff;
+    background-color: #f44336;
+    border-color: transparent;
+}
+
+.cta-epreneur {
+    color: #ffffff;
+    background-color: #d2302c;
+}
+
+.cta-epreneur:hover {
+    color: #D2302C;
+    background-color: transparent;
+    border-color: currentColor;
+}
+
+.cta-epreneur-light {
+    color: #D2302C;
+    background-color: transparent;
+    border-color: currentColor;
+}
+
+.cta-epreneur-light:hover {
+    color: #ffffff;
+    background-color: #d2302c;
+    border-color: transparent;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h2 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h3 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h4 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h5 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h6 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h7 {
+    padding: 0px;
+    margin: 0px;
+}
+
+.bun-mail {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 480px;
+    max-width: 480px;
+    height: auto;
+    min-height: 200px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: white;
+    overflow: hidden;
+    margin: 3vh auto 0vh;
+    border-radius: 4px;
+    color: #000000;
+}
+
+.bun-mail else {
+    max-width: none;
+}
+
+.bun-mail else {
+    max-height: none;
+}
+
+.bun-mail .header {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.bun-mail .header else {
+    max-width: none;
+}
+
+.bun-mail .header else {
+    max-height: none;
+}
+
+.bun-mail .header * {
+    padding: 0vh 1vw 0vh;
+}
+
+.bun-mail .header .brand {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 55px;
+    max-height: 55px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    overflow: hidden;
+    text-align: center;
+}
+
+.bun-mail .header .brand else {
+    max-width: none;
+}
+
+.bun-mail .header .brand else {
+    max-height: none;
+}
+
+.bun-mail .header .logo {
+    box-sizing: border-box;
+    width: auto;
+    min-width: auto;
+    max-width: auto;
+    height: auto;
+    min-height: 27.5px;
+    max-height: 27.5px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 13.75px auto 13.75px;
+}
+
+.bun-mail .header .logo else {
+    max-width: none;
+}
+
+.bun-mail .header .logo else {
+    max-height: none;
+}
+
+.bun-mail .header .brand-bunisha {
+    background-color: #03a9f4;
+}
+
+.bun-mail .header .brand-epreneur {
+    background-color: #D2302C;
+}
+
+.bun-mail .header .title,
+.bun-mail .header .sub-title {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.bun-mail .header .title {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 2vh auto 0.5vh;
+}
+
+.bun-mail .header .sub-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0.5vh auto 2vh;
+}
+
+.bun-mail .message {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 95%;
+    max-width: 95%;
+    height: auto;
+    min-height: 0px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 0vh auto 0vh;
+    padding: 10px 20px 10px;
+    text-align: center;
+}
+
+.bun-mail .message else {
+    max-width: none;
+}
+
+.bun-mail .message else {
+    max-height: none;
+}
+
+.bun-mail .message .main {
+    font-size: 225px;
+    font-weight: 600;
+    color: #000000;
+    margin: 3vh auto 1.5vh;
+}
+
+.bun-mail .message .sub {
+    font-size: 175px;
+    font-weight: 600;
+    color: #9F9F9F;
+    margin: 1.5vh auto 3vh;
+}
+
+.bun-mail .body {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 95%;
+    max-width: 95%;
+    height: auto;
+    min-height: 0px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 0vh auto 0vh;
+    padding: 10px;
+    border: 1px solid rgba(69, 90, 99, 0.35);
+    font-size: 15px;
+}
+
+.bun-mail .body else {
+    max-width: none;
+}
+
+.bun-mail .body else {
+    max-height: none;
+}
+
+.bun-mail .body h1,
+.bun-mail .body h2,
+.bun-mail .body h3,
+.bun-mail .body h4,
+.bun-mail .body h5 {
+    text-transform: capitalize;
+}
+
+.bun-mail .body h2,
+.bun-mail .body h3,
+.bun-mail .body h4 {
+    font-weight: 400;
+    color: #000000;
+}
+
+.bun-mail .body h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #03a9f4;
+}
+
+.bun-mail .body h2 {
+    font-size: 17px;
+}
+
+.bun-mail .body h3 {
+    font-size: 16px;
+}
+
+.bun-mail .body h4 {
+    font-size: 15px;
+}
+
+.bun-mail .footer {
+    font-size: 12px;
+    color: #9F9F9F;
+    text-align: center;
+}
+
+.bun-mail .footer * {
+    text-decoration: none;
+}
+
+.bun-mail .footer a {
+    color: inherit;
+}
+
+.bun-mail .footer p {
+    margin: 2vh auto 2vh;
+}
+
+.bun-mail .footer .action {
+    display: block;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 70%;
+    max-width: 70%;
+    height: auto;
+    min-height: 40px;
+    max-height: 40px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 3vh auto 3vh;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.bun-mail .footer .action else {
+    max-width: none;
+}
+
+.bun-mail .footer .action else {
+    max-height: none;
+}
+
+.bun-mail .footer .hr {
+    display: block;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 90%;
+    max-width: 90%;
+    height: auto;
+    min-height: 1px;
+    max-height: 1px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 1vh auto 1vh;
+    border-bottom: 0.5px solid rgba(69, 90, 99, 0.35);
+}
+
+.bun-mail .footer .hr else {
+    max-width: none;
+}
+
+.bun-mail .footer .hr else {
+    max-height: none;
+}
+
+.bun-mail .footer .footnote {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 100px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: rgba(69, 90, 99, 0.8);
+    overflow: hidden;
+    margin: 1vh auto 1vh;
+    padding: 2vh 25px 2vh;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: left;
+    word-spacing: 0.15em;
+}
+
+.bun-mail .footer .footnote else {
+    max-width: none;
+}
+
+.bun-mail .footer .footnote else {
+    max-height: none;
+}
+
+table {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 30px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+table else {
+    max-width: none;
+}
+
+table else {
+    max-height: none;
+}
+
+table>tbody>tr:nth-of-type(even) {
+    background-color: whitesmoke;
+}
+
+table thead {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 35px;
+    max-height: 35px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #03a9f4;
+    overflow: hidden;
+    line-height: 35px;
+    font-size: 1em;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+table thead else {
+    max-width: none;
+}
+
+table thead else {
+    max-height: none;
+}
+
+table tbody tr td,
+table tbody tr th {
+    font-size: 0.8em;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+table tbody tr td .btn-group .btn,
+table tbody tr td .btn,
+table tbody tr th .btn-group .btn,
+table tbody tr th .btn {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 30px;
+    height: auto;
+    min-height: 30px;
+    max-height: 30px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    padding: 0vh 5px 0vh;
+    min-width: 50px;
+    line-height: 30px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+table tbody tr td .btn-group .btn else,
+table tbody tr td .btn else,
+table tbody tr th .btn-group .btn else,
+table tbody tr th .btn else {
+    max-width: none;
+}
+
+table tbody tr td .btn-group .btn else,
+table tbody tr td .btn else,
+table tbody tr th .btn-group .btn else,
+table tbody tr th .btn else {
+    max-height: none;
+}
+
+table tbody tr td a,
+table tbody tr th a {
+    color: #000000;
+    font-weight: inherit;
+}
+
+table tbody tr td a::first-letter,
+table tbody tr th a::first-letter {
+    text-transform: uppercase;
+}
+
+table tbody tr td .badge,
+table tbody tr th .badge {
+    box-sizing: border-box;
+    width: auto;
+    min-width: auto;
+    max-width: auto;
+    height: auto;
+    min-height: 13px;
+    max-height: 13px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    font-size: 1rem;
+    line-height: 13px;
+    padding: 0px 3px 0px;
+}
+
+table tbody tr td .badge else,
+table tbody tr th .badge else {
+    max-width: none;
+}
+
+table tbody tr td .badge else,
+table tbody tr th .badge else {
+    max-height: none;
+}
+
+table tbody tr th::first-letter,
+table tbody tr td::first-letter {
+    text-transform: uppercase;
+}
+
+table tbody .table-totals tr td {
+    display: none;
+    border: 2px solid #ccc;
+}
+
+.simple-form {
+    position: relative;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 400px;
+    max-width: 400px;
+    height: auto;
+    min-height: 50vh;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 10vh auto 0vh;
+}
+
+.simple-form else {
+    max-width: none;
+}
+
+.simple-form else {
+    max-height: none;
+}
+
+.simple-form .header {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 98%;
+    max-width: 98%;
+    height: auto;
+    min-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    overflow: hidden;
+    margin: auto;
+}
+
+.simple-form .header else {
+    max-width: none;
+}
+
+.simple-form .header else {
+    max-height: none;
+}
+
+.simple-form .header * {
+    padding: 0vh 1vw 0vh;
+}
+
+.simple-form .header .brand {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 55px;
+    max-height: 55px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    overflow: hidden;
+    text-align: center;
+}
+
+.simple-form .header .brand else {
+    max-width: none;
+}
+
+.simple-form .header .brand else {
+    max-height: none;
+}
+
+.simple-form .header .logo {
+    box-sizing: border-box;
+    width: auto;
+    min-width: auto;
+    max-width: auto;
+    height: auto;
+    min-height: 27.5px;
+    max-height: 27.5px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 13.75px auto 13.75px;
+}
+
+.simple-form .header .logo else {
+    max-width: none;
+}
+
+.simple-form .header .logo else {
+    max-height: none;
+}
+
+.simple-form .header .brand-bunisha {
+    background-color: #03a9f4;
+}
+
+.simple-form .header .brand-epreneur {
+    background-color: #D2302C;
+}
+
+.simple-form .body {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 98%;
+    max-width: 98%;
+    height: auto;
+    min-height: 100px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 0px rgba(69, 90, 99, 0.35);
+    padding: 50px 25px 50px;
+    margin: 0vh auto 1vh;
+    border-radius: 4px;
+}
+
+.simple-form .body else {
+    max-width: none;
+}
+
+.simple-form .body else {
+    max-height: none;
+}
+
+.simple-form .body .title {
+    color: #000000;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 1vh auto 1vh;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.simple-form .body .input,
+.simple-form .body .btn {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 40px;
+    max-height: 40px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    line-height: 40px;
+    margin: 1vh auto 1vh;
+    border-radius: 4px;
+}
+
+.simple-form .body .input else,
+.simple-form .body .btn else {
+    max-width: none;
+}
+
+.simple-form .body .input else,
+.simple-form .body .btn else {
+    max-height: none;
+}
+
+.simple-form .body .input:focus,
+.simple-form .body .btn:focus {
+    outline: 1px solid rgba(3, 169, 244, 0.35);
+}
+
+.simple-form .body .input {
+    font-size: 1rem;
+    color: #000000;
+    padding: 0vh 1vw 0vh;
+    border: 1px solid rgba(69, 90, 99, 0.35);
+    background-color: white;
+}
+
+.simple-form .body .btn {
+    border: none;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #03a9f4;
+}
+
+.modal {
+    overflow: visible;
+}
+
+.modal .modal-close {
+    z-index: 999;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 35px;
+    max-width: 35px;
+    height: auto;
+    min-height: 35px;
+    max-height: 35px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    border-radius: 50%;
+    font-size: 2rem;
+    color: #ffffff;
+    line-height: 35px;
+    font-size: 300;
+    text-align: center;
+    cursor: pointer;
+}
+
+.modal .modal-close else {
+    max-width: none;
+}
+
+.modal .modal-close else {
+    max-height: none;
+}
+
+.modal .modal-dialog {
+    overflow: visible;
+    margin: 5% auto 5%;
+}
+
+.modal .modal-dialog .modal-content {
+    border-radius: 0px;
+    color: #000000;
+    background-color: white;
+}
+
+.modal .modal-dialog .modal-content .modal-header {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.modal .modal-dialog .modal-content .modal-header .modal-title {
+    color: #03a9f4;
+}
+
+.modal .modal-dialog .modal-content .modal-body h1,
+.modal .modal-dialog .modal-content .modal-body h2,
+.modal .modal-dialog .modal-content .modal-body h3,
+.modal .modal-dialog .modal-content .modal-body h4,
+.modal .modal-dialog .modal-content .modal-body h5,
+.modal .modal-dialog .modal-content .modal-body h6,
+.modal .modal-dialog .modal-content .modal-body a,
+.modal .modal-dialog .modal-content .modal-body b,
+.modal .modal-dialog .modal-content .modal-body label,
+.modal .modal-dialog .modal-content .modal-body strong,
+.modal .modal-dialog .modal-content .modal-body p {
+    color: inherit;
+}
+
+.modal .modal-dialog .modal-content .modal-body .span * {
+    color: #000000;
+}
+
+.modal .modal-dialog .modal-content .modal-body hr {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.modal .modal-dialog .modal-content .modal-body .alert {
+    color: #000000;
+}
+
+.modal .modal-dialog .modal-content .modal-footer {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.modal .modal-poster {
+    position: relative;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+    max-height: 400px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.35);
+}
+
+.modal .modal-poster else {
+    max-width: none;
+}
+
+.modal .modal-poster else {
+    max-height: none;
+}
+
+.modal .modal-poster .poster-background {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+    max-height: 400px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    max-width: none;
+    max-height: none;
+}
+
+.modal .modal-poster .poster-background else {
+    max-width: none;
+}
+
+.modal .modal-poster .poster-background else {
+    max-height: none;
+}
+
+.modal .modal-poster .poster-content {
+    top: 0px;
+    right: 0px;
+    position: absolute;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+    max-height: 400px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    padding: 2vh 5% 2vh;
+}
+
+.modal .modal-poster .poster-content else {
+    max-width: none;
+}
+
+.modal .modal-poster .poster-content else {
+    max-height: none;
+}
+
+.modal .modal-poster .poster-content .heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fc823f;
+    text-transform: capitalize;
+}
+
+.modal .modal-poster .poster-content ul li {
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: normal;
+}
+
+@media only screen and (max-width: 480px) {
+    .modal {
+        overflow: visible;
+    }
+
+    .modal .modal-close {
+        top: 5vh;
+        right: 1vw;
+        box-sizing: border-box;
+        width: auto;
+        min-width: 35px;
+        max-width: 35px;
+        height: auto;
+        min-height: 35px;
+        max-height: 35px;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        background-color: transparent;
+        overflow: hidden;
+        line-height: 35px;
+        color: #f44336;
+        font-weight: 600;
+        font-size: 2.3rem;
+    }
+
+    .modal .modal-close else {
+        max-width: none;
+    }
+
+    .modal .modal-close else {
+        max-height: none;
+    }
+
+    .modal .modal-dialog {
+        box-sizing: border-box;
+        width: auto;
+        min-width: 95%;
+        max-width: 95%;
+        height: auto;
+        min-height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        padding: 5vh 1vw 5vh;
+        margin: 5% auto 5%;
+        overflow: visible;
+    }
+
+    .modal .modal-dialog else {
+        max-width: none;
+    }
+
+    .modal .modal-dialog else {
+        max-height: none;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .modal {
+        overflow: visible;
+    }
+
+    .modal .modal-close {
+        top: 5vh;
+        right: 1vw;
+        box-sizing: border-box;
+        width: auto;
+        min-width: 35px;
+        max-width: 35px;
+        height: auto;
+        min-height: 35px;
+        max-height: 35px;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        background-color: transparent;
+        overflow: hidden;
+        line-height: 35px;
+        color: #f44336;
+        font-weight: 600;
+        font-size: 2.3rem;
+    }
+
+    .modal .modal-close else {
+        max-width: none;
+    }
+
+    .modal .modal-close else {
+        max-height: none;
+    }
+
+    .modal .modal-dialog {
+        box-sizing: border-box;
+        width: auto;
+        min-width: 95%;
+        max-width: 95%;
+        height: auto;
+        min-height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        padding: 5vh 1vw 5vh;
+        margin: 5% auto 5%;
+        overflow: visible;
+    }
+
+    .modal .modal-dialog else {
+        max-width: none;
+    }
+
+    .modal .modal-dialog else {
+        max-height: none;
+    }
+}
+
+.info-preview {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 90%;
+    max-width: 90%;
+    height: auto;
+    min-height: 100px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 0px auto 0px;
+    color: #000000;
+}
+
+.info-preview else {
+    max-width: none;
+}
+
+.info-preview else {
+    max-height: none;
+}
+
+.info-preview .title {
+    position: relative;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 90%;
+    max-width: 90%;
+    height: auto;
+    min-height: 100px;
+    max-height: 100px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    overflow: visible;
+    margin: 0px auto 1vh;
+    color: inherit;
+    line-height: 100px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 3rem;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba(69, 90, 99, 0.35);
+}
+
+.info-preview .title else {
+    max-width: none;
+}
+
+.info-preview .title else {
+    max-height: none;
+}
+
+.info-preview .title .icon {
+    position: relative;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 50px;
+    max-width: 50px;
+    height: auto;
+    min-height: 50px;
+    max-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 25px auto 25px;
+}
+
+.info-preview ul {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 35px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.info-preview ul else {
+    max-width: none;
+}
+
+.info-preview ul else {
+    max-height: none;
+}
+
+.info-preview ul li {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.info-preview ul li .leftie,
+.info-preview ul li .rightie {
+    height: auto;
+    min-height: 35px;
+    max-height: 35px;
+    margin: 0px;
+    box-sizing: border-box;
+    color: inherit;
+    line-height: 35px;
+    font-size: 1.4rem;
+    text-align: justify;
+    text-transform: capitalize;
+}
+
+.info-preview ul li .leftie {
+    width: auto;
+    min-width: 35%;
+    max-width: 35%;
+    margin: 0px;
+    box-sizing: border-box;
+    font-weight: 600;
+    padding-left: 5%;
+}
+
+.info-preview ul li .rightie {
+    width: auto;
+    min-width: 65%;
+    max-width: 65%;
+    margin: 0px;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+
+.modal {
+    position: fixed;
+    z-index: 999;
+    top: 0vh;
+    right: 0vw;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    max-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.modal else {
+    max-width: none;
+}
+
+.modal else {
+    max-height: none;
+}
+
+.modal .small-modal {
+    position: relative;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 400px;
+    max-width: 400px;
+    height: auto;
+    min-height: 10vh;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 0px rgba(69, 90, 99, 0.35);
+    border-radius: 4px;
+    padding: 25px;
+    margin: 15vh auto 25vh;
+    overflow: visible;
+}
+
+.modal .small-modal else {
+    max-width: none;
+}
+
+.modal .small-modal else {
+    max-height: none;
+}
+
+.modal .small-modal .icon {
+    display: block;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 80px;
+    max-width: 80px;
+    height: auto;
+    min-height: 80px;
+    max-height: 80px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    margin: 1vh auto 1vh;
+}
+
+.modal .small-modal .icon .icon {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 80px;
+    max-width: 80px;
+    height: auto;
+    min-height: 80px;
+    max-height: 80px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.modal .small-modal .icon .icon else {
+    max-width: none;
+}
+
+.modal .small-modal .icon .icon else {
+    max-height: none;
+}
+
+.modal .small-modal .title,
+.modal .small-modal .content {
+    color: #000000;
+    text-align: center;
+}
+
+.modal .small-modal .title {
+    text-transform: capitalize;
+    margin: 1vh auto 1vh;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.modal .small-modal .content {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.modal .small-modal .input,
+.modal .small-modal .btn {
+    box-sizing: border-box;
+    width: auto;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 40px;
+    max-height: 40px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    line-height: 40px;
+    margin: 1vh auto 1vh;
+    border-radius: 4px;
+}
+
+.modal .small-modal .input else,
+.modal .small-modal .btn else {
+    max-width: none;
+}
+
+.modal .small-modal .input else,
+.modal .small-modal .btn else {
+    max-height: none;
+}
+
+.modal .small-modal .input:focus,
+.modal .small-modal .btn:focus {
+    outline: 1px solid rgba(3, 169, 244, 0.35);
+}
+
+.modal .small-modal .input {
+    font-size: 1rem;
+    color: #000000;
+    padding: 0vh 1vw 0vh;
+    border: 1px solid rgba(69, 90, 99, 0.35);
+    background-color: white;
+}
+
+.modal .small-modal .btn {
+    border: none;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+}
+
+.modal .small-modal .btn-cancel {
+    background-color: #fc823f;
+}
+
+.modal .small-modal .btn-proceed {
+    background-color: #15202b;
+}
+
+.modal .small-modal .multi-btn {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(auto, 50%));
+    grid-column-gap: 0.5vw;
+    grid-row-gap: 0.5vh;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+}
+
+.modal .small-modal a.close {
+    top: -10px;
+    right: -10px;
+    position: absolute;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 25px;
+    max-width: 25px;
+    height: auto;
+    min-height: 25px;
+    max-height: 25px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #fc823f;
+    overflow: hidden;
+    border-radius: 50%;
+    line-height: 25px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.modal .small-modal a.close else {
+    max-width: none;
+}
+
+.modal .small-modal a.close else {
+    max-height: none;
+}

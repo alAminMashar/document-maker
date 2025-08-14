@@ -50,8 +50,8 @@
             margin-bottom: 4vh;
         }
 
-        .hidden{
-            display:none;
+        .hidden {
+            display: none;
             opacity: 0%;
         }
 

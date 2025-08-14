@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class Candidate extends Model
 {
@@ -20,6 +22,26 @@ class Candidate extends Model
         'multiplier',
         'active',
     ];
+
+    protected $hidden = [
+        'image'
+    ];
+
+    public function getImageAttribute()
+    {
+        $photo = $this->documents->firstWhere('document_type_id', 110);
+
+        if ($photo) {
+            return asset($photo->file_name); // works because it's relative to public/
+        }
+
+        return asset('assets/img/backgrounds/orange.png');
+    }
+
+    public function getVoteCount(Poll $poll)
+    {
+        return $this->votes()->where('poll_id','=',$poll->id)->count();
+    }
 
     /**
      * Get all of the votes for the Candidate
@@ -50,5 +72,16 @@ class Candidate extends Model
     {
         return $this->belongsTo(PoliticalParty::class, 'political_party_id', 'id');
     }
+
+    /**
+     * Get all of the user's documents.
+     * Retreiving Documents $user->documents
+     * use Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function documents(): MorphMany
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
+
 
 }

@@ -19,7 +19,7 @@
     </td>
     <td>
 
-        @if (auth()->user()->canany(['poll.store']))
+        @if (auth()->user()->canany(['polls.store']))
             <div class="btn-group btn-xs col" role="group">
                 <button id="actionDropDownButton{{ $poll->id }}" type="button"
                     class="btn btn-primary btn-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,7 +36,7 @@
             </div>
         @endif
 
-        @if (auth()->user()->can('poll.delete'))
+        @if (auth()->user()->can('polls.delete'))
             <div class="btn-group btn-xs col" role="group">
                 <button id="deleteDropDownButton{{ $poll->id }}" type="button"
                     class="btn btn-danger btn-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

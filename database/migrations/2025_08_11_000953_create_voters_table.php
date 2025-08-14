@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('device')->nullable();
             $table->string('platform')->nullable();
             $table->string('referer')->nullable();
-            $table->string('cookier_value')->nullable();
+            $table->string('cookie_value')->nullable();
             $table->timestamps();
         });
     }

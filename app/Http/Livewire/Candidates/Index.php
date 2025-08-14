@@ -38,7 +38,7 @@ class Index extends Component
 
     public $name, $title, $political_party_id, $vote_count, $multiplier, $active;
 
-    public $updateCandidate = false, $addCandidate = false;
+    public $updateCandidate = false, $addCandidate = false, $addDocument = false;
 
     /**
      * delete action listener
@@ -99,7 +99,24 @@ class Index extends Component
     }
 
     /**
-     * Open Add Party form
+     * Open Add Candidate form
+     * @return void
+     */
+    public function addDocument($candidateId)
+    {
+        $this->candidateId = $candidateId;
+        $this->addDocument = true;
+        $this->addCandidate = false;
+        $this->updateCandidate = false;
+    }
+
+    public function cancelDocument()
+    {
+        $this->addDocument = false;
+    }
+
+    /**
+     * Open Add Candidate form
      * @return void
      */
     public function addCandidate()
@@ -107,6 +124,7 @@ class Index extends Component
         $this->resetFields();
         $this->addCandidate = true;
         $this->updateCandidate = false;
+        $this->addDocument = false;
     }
 
     /**

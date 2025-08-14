@@ -37,7 +37,7 @@ class Index extends Component
 
     public $pollId;
 
-    public $title, $description, $starting_at, $ending_at, $user_id;
+    public $title, $description, $starting_at, $ending_at, $user_id, $force_target, $target_votes;
 
     public $updatePoll = false, $addPoll = false;
 
@@ -57,6 +57,8 @@ class Index extends Component
         'starting_at'       =>  'required|date',
         'ending_at'         =>  'required|date|after:starting_at',
         'user_id'           =>  'required|exists:users,id',
+        'force_target'      =>  'nullable|boolean',
+        'target_votes'      =>  'nullable|numeric',
     ];
 
     public function updated($propertyName)
@@ -74,6 +76,8 @@ class Index extends Component
         $this->starting_at      =  '';
         $this->ending_at        =  '';
         $this->user_id          =  Auth::user()->id;
+        $this->force_target     =  '';
+        $this->target_votes     =  '';
     }
 
     public function mount()
@@ -146,6 +150,9 @@ class Index extends Component
             $this->description      =  $poll->description;
             $this->starting_at      =  $poll->starting_at;
             $this->ending_at        =  $poll->ending_at;
+            $this->force_target     =  $poll->force_target;
+            $this->target_votes     =  $poll->target_votes;
+            $this->user_id          =  $poll->user_id;
             $this->updatePoll       =  true;
             $this->addPoll          =  false;
         } catch (\Exception $ex) {
@@ -168,6 +175,8 @@ class Index extends Component
             'starting_at'       =>  'required|date',
             'ending_at'         =>  'required|date|after:starting_at',
             'user_id'           =>  'required|exists:users,id',
+            'force_target'      =>  'nullable|boolean',
+            'target_votes'      =>  'nullable|numeric',
         ]);
 
         try {
@@ -186,7 +195,7 @@ class Index extends Component
 
             $this->dispatchBrowserEvent('alert',[
                 "type"      =>  "error",
-                'message'   =>  "Something went wrong!"
+                'message'   =>  "$ex Something went wrong!"
             ]);
 
         }

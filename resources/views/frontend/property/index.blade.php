@@ -1,0 +1,10 @@
+@extends('layouts.app')
+@section('title')
+    Properties
+@endsection
+@section('content')
+    @include('property.components.header')
+    @include('property.components.all-properties')
+    @include('home.partials.services')
+    @include('cta.call-to-action')
+@endsection
