@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use App\Jobs\RunSchedules;
 use Carbon\Carbon;
 
 class Poll extends Model
@@ -23,6 +24,11 @@ class Poll extends Model
         'target_votes',
     ];
 
+    protected $casts = [
+        'starting_at' => 'datetime',
+        'ending_at'   => 'datetime', // if you have this
+    ];
+
     protected $hidden = [
         'image',
         'has_started',
@@ -36,18 +42,16 @@ class Poll extends Model
     /**
      * Get the duration in hours between starting_at and ending_at.
      */
-    protected function duration(): Attribute
+    protected function getDurationAttribute()
     {
-        return Attribute::get(function () {
-            if (!$this->starting_at || !$this->ending_at) {
-                return null; // Return null if one date is missing
-            }
+        if (!$this->starting_at || !$this->ending_at) {
+            return null; // Return null if one date is missing
+        }
 
-            $start = Carbon::parse($this->starting_at);
-            $end   = Carbon::parse($this->ending_at);
+        $start = Carbon::parse($this->starting_at);
+        $end   = Carbon::parse($this->ending_at);
 
-            return $start->diffInHours($end); // Always integer hours
-        });
+        return $start->diffInHours($end); // Always integer hours
     }
 
     public function getImageAttribute()
@@ -63,7 +67,7 @@ class Poll extends Model
     public function getIsRunningAttribute()
     {
         return $this->ending_at >= Carbon::now() ? true:false;
-    }   
+    }
 
     public function getActiveAttribute()
     {
@@ -111,5 +115,15 @@ class Poll extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function runMultipliers()
+    {
+        if($this->force_target && $this->target_votes > 0){
+            return dispatch(new RunSchedules($this));
+        }
+
+        return true;
+
     }
 }

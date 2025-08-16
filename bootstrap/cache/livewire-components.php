@@ -29,6 +29,7 @@
   'permissions.index' => 'App\\Http\\Livewire\\Permissions\\Index',
   'political-party.index' => 'App\\Http\\Livewire\\PoliticalParty\\Index',
   'political-party.show' => 'App\\Http\\Livewire\\PoliticalParty\\Show',
+  'poll-countdown' => 'App\\Http\\Livewire\\PollCountdown',
   'polls.index' => 'App\\Http\\Livewire\\Polls\\Index',
   'polls.show' => 'App\\Http\\Livewire\\Polls\\Show',
   'roles.index' => 'App\\Http\\Livewire\\Roles\\Index',
@@ -40,4 +41,5 @@
   'user.profile' => 'App\\Http\\Livewire\\User\\Profile',
   'user.show' => 'App\\Http\\Livewire\\User\\Show',
   'voters.index' => 'App\\Http\\Livewire\\Voters\\Index',
+  'voters.show' => 'App\\Http\\Livewire\\Voters\\Show',
 );

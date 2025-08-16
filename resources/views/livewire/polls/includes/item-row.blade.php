@@ -32,6 +32,14 @@
                             Edit
                         </button>
                     </li>
+                    @if (auth()->user()->hasRole('Super Admin'))
+                        <li>
+                            <button class="dropdown-item" wire:click="runMultipliers({{ $poll->id }})">
+                                <i class="mdi mdi-check-decagram"></i>
+                                Run Multipliers
+                            </button>
+                        </li>
+                    @endif
                 </ul>
             </div>
         @endif

@@ -28,33 +28,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         //Cron Job Here
-        // /usr/local/bin/ea-php82 /home/shieldm1/demo-app/artisan schedule:run
         $schedule->command('queue:work --timeout=3600 --stop-when-empty')
         ->everyFiveMinutes()
         ->withoutOverlapping();
-
-        $schedule->job(new AddLocationToPatrolRecords)
-        ->everyMinute();
-
-        // Clean Location Data
-        $schedule->job(new CleanLocationData)
-        ->dailyAt('22:30');
-
-        //Balance System Ledgers
-        $schedule->job(new UpdateAllEmployees)
-        ->dailyAt('23:00');
-
-        //Balance System Ledgers
-        $schedule->job(new BalanceLedgers)
-        ->dailyAt('23:30');
-
-        //Balance System Ledgers
-        $schedule->job(new RunReport())
-        ->dailyAt('20:50');
-
-        // $schedule->command('app:backup-database')
-        // ->dailyAt('23:30');
-
     }
 
     /**

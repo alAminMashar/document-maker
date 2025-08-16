@@ -1,4 +1,3 @@
-@livewireScripts()
 <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 <!-- Jquery, Popper, Bootstrap -->
 <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
@@ -101,4 +100,5 @@
 <!--End of Tawk.to Script-->
 {{-- <script src="https://static.elfsight.com/platform/platform.js" async></script> --}}
 {{-- Any additional scripts --}}
+@livewireScripts()
 @stack('scripts')

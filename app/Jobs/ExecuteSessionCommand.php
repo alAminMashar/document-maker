@@ -8,13 +8,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 use App\Models\Voter;
 use App\Models\Vote;
 use App\Models\Poll;
 use App\Models\Candidate;
 
-class RecordVote implements ShouldQueue
+class ExecuteSessionCommand implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -34,15 +35,25 @@ class RecordVote implements ShouldQueue
      */
     public function handle(): void
     {
-        $votes_target = $this->poll['votes_target'];
-        $current_votes = $this->poll->votes->count();
-        
-        $remaining_target = $votes_target - $current_votes;
+        $this->createVote();
+    }
 
-        if($remaining_target > 0){
-            $available_slots = $remaining_target/ $this->poll->duration;
-            
-        }
+    public function createVote()
+    {
+        Vote::create([
+            'poll_id'       =>  $this->poll['id'],
+            'candidate_id'  =>  $this->candidate['id'],
+            'voter_id'      =>  $this->getVoterId(),
+        ]);
+    }
 
+    public function getVoterId()
+    {
+        $voter = Voter::create([
+            'device'    =>  'linux',
+            'platform'  =>  'Browser',
+        ]);
+
+        return $voter->id;
     }
 }

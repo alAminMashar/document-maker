@@ -212,6 +212,23 @@ class Index extends Component
         $this->resetFields();
     }
 
+    public function runMultipliers(Poll $poll)
+    {
+        try{
+            $poll->runMultipliers();
+
+            $this->dispatchBrowserEvent('alert',[
+                "type"      =>  "success",
+                'message'   =>  "Successfuly dispatched task"
+            ]);
+        }catch(\Exception $e){
+            $this->dispatchBrowserEvent('alert',[
+                "type"      =>  "error",
+                'message'   =>  "$e Something went wrong!"
+            ]);
+        }
+    }
+
 
      /**
      * delete specific Poll data from the topics table
