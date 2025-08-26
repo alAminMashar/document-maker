@@ -2,78 +2,72 @@
 
 namespace App\Jobs;
 
+use App\Models\Poll;
+use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-
-use App\Models\Poll;
-use App\Models\Candidate;
+use Illuminate\Support\Facades\Bus;
+use Throwable;
 
 class VoteSession implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $poll, $candidate, $target_votes;
+    public $poll;
+    public $candidates;
+    public $targetVotes;
 
     /**
-     * Create a new job instance.
+     * Max votes per session job
      */
-    public function __construct(Poll $poll, Candidate $candidate, $target_votes)
+    protected int $chunkSize = 100;
+
+    public function __construct(Poll $poll, $candidates, int $targetVotes)
     {
         $this->poll = $poll;
-        $this->candidate = $candidate;
-        $this->target_votes = $target_votes;
+        $this->candidates = $candidates;
+        $this->targetVotes = $targetVotes;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        // Log::info('Voting data', [
-        //     'total_target_at_session'      =>  $this->target_votes,
-        // ]);
 
-        $this->dispatchCommands();
-    }
+        $votePool = [];
 
-    public function dispatchCommands()
-    {
-        for ($i=0; $i < $this->target_votes; $i++) {
-            dispatch(new ExecuteSessionCommand($this->poll, $this->candidate));
-            // ->delay(now()->addMinutes($this->generateRandomInt()));
-        }
-    }
+        foreach ($this->candidates as $candidate) {
+            // Convert percentage targets into actual votes
+            $target = $candidate->multiplier > 0
+                ? intval(($candidate->multiplier / 100) * $this->targetVotes)
+                : intval(1);
 
-    public function sessionIntervalMinutes()
-    {
-        $duration_in_mins = $this->poll['duration']?? 0 * 60;
-        $session_intervals = $duration_in_mins/$this->number_of_sessions;
-
-        return $session_intervals;
-    }
-
-    /**
-     * Generate a random integer between a given range.
-     *
-     * @param int $min
-     * @param int $max
-     * @return int
-     * @throws Exception
-     */
-    function generateRandomInt(): int
-    {
-        $min = 1;
-        $max = $this->target_votes;
-
-        if ($min > $max) {
-            [$min, $max] = [$max, $min]; // Swap values
+            // Add candidate ID to pool repeated by target count
+            $votePool = array_merge(
+                $votePool,
+                array_fill(0, $target, $candidate->id)
+            );
         }
 
-        return random_int($min, $max);
+        // Shuffle to randomize votes across candidates
+        shuffle($votePool);
+
+        // Break into smaller sessions
+        $chunks = array_chunk($votePool, $this->chunkSize);
+
+        // Track the current delay
+        $delayInMinutes = 0;
+
+        // Dispatch each job with an incremental delay
+        foreach ($chunks as $chunk) {
+            $job = (new ExecuteSessionCommand($this->poll->id, $chunk))
+                ->delay(now()->addMinutes($delayInMinutes));
+
+            dispatch($job);
+
+            // Increment the delay for the next job
+            $delayInMinutes += 30;
+        }
     }
 }

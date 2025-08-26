@@ -38,7 +38,7 @@ class PrintController extends Controller
 
     public function makeQRCodeData(Letter $letter)
     {
-        $route = route('letter.verify', ['serial_number' => $letter->serial_number]);
+        $route = route('letter.verify', ['letter' => $letter->serial_number]);
 
         return \QrCode::format('png')
             ->size(300)
@@ -96,7 +96,7 @@ class PrintController extends Controller
             ]);
 
             $file_name = ucwords($letter->serial_number) . '.pdf';
-            return $pdf->download($file_name);
+            return $pdf->stream($file_name);
 
         }else{
             return redirect()->away('https://www.google.com');

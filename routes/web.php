@@ -70,6 +70,7 @@ use App\Http\Livewire\FrontEnd\PollShow as FrontendPollShow;
 Route::get('/', FrontendIndex::class)->name('/');
 Route::get('/home', FrontendIndex::class)->name('home');
 Route::get('/ongoing/polls/{poll}', FrontendPollShow::class)->name('frontend.polls.show');
+
 Route::get('/ongoing/polls', FrontendPolls::class)->name('frontend.polls');
 
 //Open to all

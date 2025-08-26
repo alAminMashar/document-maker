@@ -5,20 +5,18 @@
         </div>
         <div class="body">
             <h1 class="title">
-                {{ $poll['title'] }}
+                {{ Str::limit($poll['title'], 100, '...') }}
             </h1>
             <h3 class="location">
-                <span class="fas fa-map-marker"></span>
-                &nbsp;{{ Str::limit($poll['description'], 20, '...') }}&nbsp;
-                <small class="text-info float-end">
-                    ({{ $poll->active ? 'Active' : 'In Active' }})
+                <span class="fas fa-clock"></span>
+                <small class="">
+                    {{ $poll->duration }} Hours
                 </small>
             </h3>
             <span class="size">
-                Start:&nbsp;{{ \Carbon\Carbon::parse($poll['starting_at'])->format('j/m/y g:i A') }}
+                ({{ $poll->active ? 'Active' : 'In Active' }})
             </span>
             <span class="price">
-                End:&nbsp;{{ \Carbon\Carbon::parse($poll['ending_at'])->format('j/m/y g:i A') }}
             </span>
         </div>
     </div>

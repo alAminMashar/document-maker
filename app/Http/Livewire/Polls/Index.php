@@ -37,7 +37,7 @@ class Index extends Component
 
     public $pollId;
 
-    public $title, $description, $starting_at, $ending_at, $user_id, $force_target, $target_votes;
+    public $title, $description, $starting_at, $ending_at, $user_id, $force_target, $target_votes, $number_of_sessions;
 
     public $updatePoll = false, $addPoll = false;
 
@@ -59,6 +59,7 @@ class Index extends Component
         'user_id'           =>  'required|exists:users,id',
         'force_target'      =>  'nullable|boolean',
         'target_votes'      =>  'nullable|numeric',
+        'number_of_sessions'=>  'nullable|numeric',
     ];
 
     public function updated($propertyName)
@@ -78,6 +79,7 @@ class Index extends Component
         $this->user_id          =  Auth::user()->id;
         $this->force_target     =  '';
         $this->target_votes     =  '';
+        $this->number_of_sessions = 1;
     }
 
     public function mount()
@@ -152,6 +154,7 @@ class Index extends Component
             $this->ending_at        =  $poll->ending_at;
             $this->force_target     =  $poll->force_target;
             $this->target_votes     =  $poll->target_votes;
+            $this->number_of_sessions= $poll->number_of_sessions;
             $this->user_id          =  $poll->user_id;
             $this->updatePoll       =  true;
             $this->addPoll          =  false;
@@ -177,6 +180,7 @@ class Index extends Component
             'user_id'           =>  'required|exists:users,id',
             'force_target'      =>  'nullable|boolean',
             'target_votes'      =>  'nullable|numeric',
+            'number_of_sessions'=>  'nullable|numeric',
         ]);
 
         try {

@@ -148,7 +148,7 @@ class Index extends Component
         $this->filter_description = $desc;
 
         return $query;
-
+        
     }
 
     public function render()

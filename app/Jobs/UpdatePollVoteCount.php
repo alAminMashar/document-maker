@@ -8,22 +8,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Poll;
 
-use App\Models\Customer;
-use App\Models\AgedAccount;
 
-class CreateCustomerAgedAccount implements ShouldQueue
+class UpdatePollVoteCount implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $account;
+    public $poll_id;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(AgedAccount $account)
+    public function __construct($poll_id)
     {
-        $this->account = $account;
+        $this->poll_id = $poll_id;
     }
 
     /**
@@ -31,8 +30,12 @@ class CreateCustomerAgedAccount implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->account->updateBalances();
+        $poll = Poll::find($this->poll_id);
+        if ($poll) {
+            $poll->updateCurrentVotes();
+        }else{
+            Log::error("Poll not found for ID: " . $this->poll_id);
+        }
     }
-
 
 }

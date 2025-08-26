@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Livewire\Voters;
-
+use App\Http\Livewire\Voters\Traits\FilterTrait;
 use Livewire\WithPagination;
 use Livewire\Component;
 
 use App\Models\Voter;
-use Carbon\Carbon;
-use Auth;
+use App\Models\Document;
+use App\Models\Poll;
 
 class Index extends Component
 {
@@ -17,7 +17,7 @@ class Index extends Component
         Search Stuff and Pagination
 
      *----------------------------------------------*/
-    use WithPagination;
+    use WithPagination, FilterTrait;
 
     // use Livewire\WithPagination; add this to top
 
@@ -45,7 +45,7 @@ class Index extends Component
      * delete action listener
      */
     protected $listeners = [
-        'deletePollListner'    =>  'deletePoll'
+        'deleteVoterListner'    =>  'deleteVoter'
     ];
 
      /**
@@ -90,14 +90,29 @@ class Index extends Component
         $this->cookier_value    =   '';
     }
 
+    public $voter_count, $polls;
+
+    public function mount()
+    {
+        $this->voter_count = Voter::count();
+        $this->polls = Poll::orderBy('title','ASC')->get(['id','title']);
+    }
+
     public function render()
     {
-
-        $voters = Voter::where('name','like','%'.$this->search.'%')
-        ->orderBy('created_at','DESC')
+        $documents = Document::whereHas('type', function($q){
+            $q->where('name','=','Voters Report');
+        })->orderBy('created_at', 'DESC')
         ->paginate(config('app.paginate'));
 
-        return view('livewire.voters.index',compact('voters'))
+        $voters = $this->filter()->paginate(config('app.paginate'));
+
+        if($this->filter){
+            $this->generate_report = false;
+            $this->generateReport();
+        }
+
+        return view('livewire.voters.index',compact('voters','documents'))
         ->extends('layouts.app')
         ->section('content');
 

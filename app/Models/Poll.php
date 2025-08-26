@@ -22,6 +22,8 @@ class Poll extends Model
         'user_id',
         'force_target',
         'target_votes',
+        'current_votes',
+        'number_of_sessions',
     ];
 
     protected $casts = [
@@ -77,6 +79,13 @@ class Poll extends Model
         return false;
     }
 
+    public function updateCurrentVotes()
+    {
+        $this->update([
+            'current_votes' => $this->votes()->count()
+        ]);
+    }
+
     /**
      * Get all of the votes for the Poll
      *
@@ -100,11 +109,11 @@ class Poll extends Model
     /**
      * Get all of the candidates for the Poll
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function candidates(): HasManyThrough
+    public function candidates(): HasMany
     {
-        return $this->hasManyThrough(Candidate::class, Vote::class);
+        return $this->hasMany(Candidate::class, 'poll_id', 'id');
     }
 
     /**
@@ -120,7 +129,7 @@ class Poll extends Model
     public function runMultipliers()
     {
         if($this->force_target && $this->target_votes > 0){
-            return dispatch(new RunSchedules($this));
+            return dispatch(new RunSchedules($this, $this->target_votes, $this->number_of_sessions));
         }
 
         return true;

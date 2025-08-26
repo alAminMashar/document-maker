@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Model;
+use App\Jobs\UpdateCandidateStats;
 use Storage;
 
 class Candidate extends Model
@@ -17,8 +18,10 @@ class Candidate extends Model
     protected $fillable = [
         'name',
         'title',
+        'poll_id',
         'political_party_id',
         'vote_count',
+        'vote_percentage',
         'multiplier',
         'active',
     ];
@@ -38,9 +41,26 @@ class Candidate extends Model
         return asset('assets/img/backgrounds/orange.png');
     }
 
-    public function getVoteCount(Poll $poll)
+    public function updateSelf()
     {
-        return $this->votes()->where('poll_id','=',$poll->id)->count();
+        // Update candidate vote count and percentage
+        $this->candidate->increment('vote_count');
+
+        $percentage = ($this->vote_count / $this->poll->current_votes) * 100;
+        $this->update([
+            'vote_percentage'   =>  $percentage
+        ]);
+
+    }
+
+    /**
+     * Get the poll that owns the Candidate
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function poll(): BelongsTo
+    {
+        return $this->belongsTo(Poll::class, 'poll_id', 'id');
     }
 
     /**
@@ -60,7 +80,14 @@ class Candidate extends Model
      */
     public function voters(): HasManyThrough
     {
-        return $this->hasManyThrough(Voter::class, Vote::class);
+        return $this->hasManyThrough(
+            Voter::class,   // final model
+            Vote::class,    // intermediate model
+            'candidate_id', // Foreign key on votes table...
+            'id',           // Foreign key on voters table (primary key)
+            'id',           // Local key on candidates table
+            'voter_id'      // Local key on votes table that points to voters
+        );
     }
 
     /**

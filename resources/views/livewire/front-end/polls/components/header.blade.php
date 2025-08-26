@@ -1,6 +1,6 @@
 <div class="property-banner d-none d-sm-block">
     <div class="background">
-        <img src="{{ asset('assets/img/backgrounds/orange.png') }}" alt="Banner">
+        <img src="{{ asset('assets/img/background/4.png') }}" alt="Banner">
     </div>
     <div class="body">
         <h1 class="title">

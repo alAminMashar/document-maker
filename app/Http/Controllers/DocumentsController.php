@@ -29,12 +29,18 @@ class DocumentsController extends Controller
             ]);
         }
     }
-    
+
     public function storeCandidatePhoto(StoreDocumentRequest $request)
     {
         $this->checkDocumentType(110, 'Candidate Photo');
 
         $candidate = Candidate::findOrFail($request->documentable_id);
+        foreach($candidate->documents()->get() as $document){
+            if($document->type['name'] == 'Candidate Photo'){
+                $this->deleteDocument($document->id);
+            }
+        }
+
         $description = $candidate->name;
         $org = 1;
         $slug = Str::slug(strtolower($description.'-'.date('Y M d H:i:s')), '-');

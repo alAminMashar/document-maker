@@ -72,7 +72,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-4
+                        <div class="col-xl-4 col-lg-4 d-none
                         ">
                             <div class="footer-social f-right d-nones">
                                 <a href="https://x.com" target="_blank">

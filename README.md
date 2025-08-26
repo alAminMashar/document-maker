@@ -52,24 +52,10 @@ php artisan db:seed --class=UsersSeeder
 
 
 <!-- For Deployment -->
-<!-- Add this to register method of AppServiceProvider -->
-$this->app->bind('path.public', function() {
-    return realpath(base_path().'/../public_html');
-});
-
 
 <!-- Add the following to bootstrap app.php -->
 $app->usePublicPath(base_path('/../public_html'));
 
-
-<!-- Modify config/filesystems  -->
-'public' => [
-    'driver' => 'local',
-    'root' => storage_path('app/public_html'),
-    'url' => env('APP_URL').'/storage',
-    'visibility' => 'public',
-    'throw' => false,
-],
 
 <!-- Public/Index.php -->
 require __DIR__.'/../<main_app_files>/vendor/autoload.php';

@@ -2,56 +2,64 @@
 
 namespace App\Jobs;
 
+use App\Models\Poll;
+use App\Models\Vote;
+use App\Models\Voter;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Bus\Batch;
+use Illuminate\Bus\Batchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-
-use App\Models\Voter;
-use App\Models\Vote;
-use App\Models\Poll;
-use App\Models\Candidate;
 
 class ExecuteSessionCommand implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, Batchable;
 
-    public $poll, $candidate;
+    protected int $pollId;
+    protected array $candidateIds;
 
     /**
-     * Create a new job instance.
+     * @param int $pollId
+     * @param array $candidateIds  Array of candidate IDs to vote for
      */
-    public function __construct(Poll $poll, Candidate $candidate)
+    public function __construct(int $pollId, array $candidateIds)
     {
-        $this->poll = $poll;
-        $this->candidate = $candidate;
+        $this->pollId = $pollId;
+        $this->candidateIds = $candidateIds;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        $this->createVote();
+        foreach ($this->candidateIds as $candidateId) {
+            // ✅ Pick a random voter if exists, else create one
+            // $voter = Voter::inRandomOrder()->first() ?? Voter::factory()->create();
+            // $voter =  Voter::factory()->create();
+
+            Vote::create([
+                'poll_id'      => $this->pollId,
+                'candidate_id' => $candidateId,
+                'voter_id'     => $this->getVoterId(),
+            ]);
+
+            // \Log::info("Vote cast for candidate {$candidateId} by voter {$voter->id}");
+        }
     }
 
-    public function createVote()
+    public function getVoterId(): int
     {
-        Vote::create([
-            'poll_id'       =>  $this->poll['id'],
-            'candidate_id'  =>  $this->candidate['id'],
-            'voter_id'      =>  $this->getVoterId(),
-        ]);
-    }
+        $voter = Voter::where('name','Auto Voter')->first();
 
-    public function getVoterId()
-    {
+        if($voter){
+            return $voter->id;
+        }
+
         $voter = Voter::create([
-            'device'    =>  'linux',
-            'platform'  =>  'Browser',
+            'name' => 'Auto Voter',
+            'ip_address' => '192.0.0.1',
+            'referer'   => config('app.name'),
+
         ]);
 
         return $voter->id;

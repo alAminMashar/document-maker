@@ -6,7 +6,14 @@
         {{ $candidate->title }}
     </td>
     <td class="text-wrap">
-        {{ $candidate->politicalParty['title'] }}
+        {{ optional($candidate->poll)->title }} <br>
+        <small class="text-muted">
+            {{ $candidate->politicalParty['title'] }}
+        </small>
+    </td>
+    <td class="text-wrap">
+        {{ number_format($candidate->vote_percentage, 2) . '%' }} <br>
+        {{ number_format($candidate->vote_count) }} &nbsp; Votes
     </td>
     <td class="text-wrap">
         {{ $candidate->active ? 'Active' : 'In Active' }}

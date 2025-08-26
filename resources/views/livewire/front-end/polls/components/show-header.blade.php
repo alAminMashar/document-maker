@@ -1,23 +1,30 @@
-<div class="property-banner d-none d-sm-block">
-    <div class="background">
-        <img src="{{ asset('assets/img/backgrounds/grey.png') }}" alt="Banner">
+<!--? About Law Start-->
+<section class="about-low-area pt-50 pb-50 text-color-bg" data-background="{{ asset('assets/img/background/4.png') }}"
+    style="background-repeat: no-repeat;background-size: cover;background-position: center;">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="about-caption">
+                    <div class="section-tittle mb-35">
+                        <span class="success p-0 m-0">
+                            Poll
+                        </span>
+                        <h2 class="text-light">
+                            <strong>
+                                {{ $poll->title }}
+                            </strong>
+                        </h2>
+                        <hr class="col-2 success hr">
+                    </div>
+                    <p class="text-light">
+                        {{ $poll->description }}
+                    </p>
+                </div>
+                @include('livewire.front-end.polls.components.countdown')
+            </div>
+        </div>
+
     </div>
-    <div class="body">
-        <h1 class="title">
-            <b>
-                {{ $poll->title }}
-            </b>
-        </h1>
-        <p class="sub-title">
-            Start:&nbsp;{{ \Carbon\Carbon::parse($poll['starting_at'])->format('j/m/y g:i A') }}
-            &nbsp;
-            End:&nbsp;{{ \Carbon\Carbon::parse($poll['ending_at'])->format('j/m/y g:i A') }}
-            <small>
-                ({{ $poll->active ? 'Active' : 'In Active' }})
-            </small>
-        </p>
-        <p class="sub-title">
-            {{ $poll->description }}
-        </p>
-    </div>
-</div>
+</section>
+<!-- About Law End-->

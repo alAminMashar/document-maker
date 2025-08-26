@@ -43,8 +43,8 @@
                         </label>
                         <input wire:model.defer="political_party_id"
                             class="form-control form-control-sm @error('political_party_id') is-invalid @enderror"
-                            list="candidates_list" id="datalist" placeholder="search employee...">
-                        <datalist id="candidates_list">
+                            list="parties_list" id="datalist" placeholder="search political parties...">
+                        <datalist id="parties_list">
                             @if ($parties->count())
                                 @foreach ($parties as $party)
                                     <option value="{{ $party->id }}">
@@ -56,6 +56,30 @@
                             @endif
                         </datalist>
                         @error('political_party_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="datalist" class="form-label">
+                            Select Poll
+                            <span class="text-danger fw-bold">*</span>
+                        </label>
+                        <input wire:model.defer="poll_id"
+                            class="form-control form-control-sm @error('poll_id') is-invalid @enderror"
+                            list="polls_list" id="datalist" placeholder="search polls...">
+                        <datalist id="polls_list">
+                            @if ($polls->count())
+                                @foreach ($polls as $poll)
+                                    <option value="{{ $poll->id }}">
+                                        {{ $poll->title }}
+                                    </option>
+                                @endforeach
+                            @else
+                                <option>No parties available</option>
+                            @endif
+                        </datalist>
+                        @error('poll_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

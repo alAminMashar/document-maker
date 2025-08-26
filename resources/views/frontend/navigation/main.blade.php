@@ -16,7 +16,7 @@
                                 </ul>
                                 <div class="header-social d-nones">
                                     <ul>
-                                        @include('frontend.shared.social-links')
+                                        {{-- @include('frontend.shared.social-links') --}}
                                     </ul>
                                 </div>
                             </div>

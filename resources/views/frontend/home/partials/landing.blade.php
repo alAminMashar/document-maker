@@ -1,5 +1,5 @@
 <div class="home-landing-card">
-    <img src="{{ asset('assets/img/backgrounds/orange.png') }}" alt="Home Landing Page Banner">
+    <img src="{{ asset('assets/img/background/4.png') }}" alt="Home Landing Page Banner">
     <div class="tint"></div>
     <div class="content">
         <h1 class="title">

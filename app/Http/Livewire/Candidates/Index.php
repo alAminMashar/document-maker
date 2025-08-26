@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Livewire\Candidates;
-
-use Livewire\WithPagination;
 use Livewire\Component;
+use App\Http\Livewire\Candidates\Traits\FilterTrait;
+use Livewire\WithPagination;
 
 use App\Models\Candidate;
 use App\Models\PoliticalParty as Party;
+use App\Models\Document;
+use App\Models\Poll;
 
 class Index extends Component
 {
@@ -16,7 +18,7 @@ class Index extends Component
         Search Stuff and Pagination
 
      *----------------------------------------------*/
-    use WithPagination;
+    use WithPagination, FilterTrait;
 
     // use Livewire\WithPagination; add this to top
 
@@ -36,7 +38,7 @@ class Index extends Component
 
     public $candidateId;
 
-    public $name, $title, $political_party_id, $vote_count, $multiplier, $active;
+    public $name, $title, $poll_id, $political_party_id, $vote_count, $multiplier, $active;
 
     public $updateCandidate = false, $addCandidate = false, $addDocument = false;
 
@@ -51,10 +53,10 @@ class Index extends Component
      * List of add/edit form rules
      */
     protected $rules = [
-        'name'                  =>  'required|unique:candidates',
+        'name'                  =>  'required|',
+        'poll_id'               =>  'required|exists:polls,id',
         'title'                 =>  'required',
         'political_party_id'    =>  'required|exists:political_parties,id',
-        'vote_count'            =>  'nullable',
         'multiplier'            =>  'required',
         'active'                =>  'required',
     ];
@@ -72,27 +74,35 @@ class Index extends Component
         $this->name                  =   '';
         $this->title                 =   '';
         $this->political_party_id    =   '';
-        $this->vote_count            =   0;
+        $this->poll_id               =   '';
         $this->multiplier            =   '';
         $this->active                =   '';
     }
 
-
-    public $parties;
+    public $parties, $polls;
 
     public function mount()
     {
         $this->parties = Party::orderBy('title','ASC')->get(['id','title']);
+        $this->polls   = Poll::orderBy('title','ASC')->get(['id','title']);
+        $this->updateCandidates();//In FilterTrait
     }
 
     public function render()
     {
-
-        $candidates = Candidate::where('name','like','%'.$this->search.'%')
-        ->orderBy('name','ASC')
+        $documents = Document::whereHas('type', function($q){
+            $q->where('name','=','Candidate Report');
+        })->orderBy('created_at', 'DESC')
         ->paginate(config('app.paginate'));
 
-        return view('livewire.candidates.index',['candidates'=>$candidates])
+        $candidates = $this->filter()->paginate(config('app.paginate'));
+
+        if($this->filter){
+            $this->generate_report = false;
+            $this->generateReport();
+        }
+
+        return view('livewire.candidates.index',compact('candidates','documents'))
         ->extends('layouts.app')
         ->section('content');
 
@@ -152,7 +162,7 @@ class Index extends Component
 
             $this->dispatchBrowserEvent('alert',[
                 "type"      =>  "error",
-                'message'   =>  "Something went wrong! We could not add the topic."
+                'message'   =>  "Something went wrong! We could not complete the task."
             ]);
 
         }
@@ -170,6 +180,7 @@ class Index extends Component
             $this->name                  =   $candidate->name;
             $this->title                 =   $candidate->title;
             $this->political_party_id    =   $candidate->political_party_id;
+            $this->poll_id               =   $candidate->poll_id;
             $this->vote_count            =   $candidate->vote_count;
             $this->multiplier            =   $candidate->multiplier;
             $this->active                =   $candidate->active;
@@ -193,10 +204,10 @@ class Index extends Component
     public function updateCandidate(){
 
         $validated = $this->validate([
-            'name'                  =>  'required|unique:candidates,name,'.$this->candidateId,
+            'name'                  =>  'required',
             'title'                 =>  'required',
             'political_party_id'    =>  'required|exists:political_parties,id',
-            'vote_count'            =>  'nullable',
+            'poll_id'               =>  'required|exists:polls,id',
             'multiplier'            =>  'required',
             'active'                =>  'required',
         ]);

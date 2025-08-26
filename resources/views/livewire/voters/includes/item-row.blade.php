@@ -1,14 +1,5 @@
 <tr>
     <td class="text-wrap">
-        {{ $voter->name }}
-    </td>
-    <td class="text-wrap">
-        {{ $voter->phone_number }} <br>
-        <small class="text-muted">
-            {{ $voter->email }}
-        </small>
-    </td>
-    <td class="text-wrap">
         {{ $voter->browser }}<br>
         <small class="text-muted">
             {{ $voter->ip_address }}
@@ -28,6 +19,12 @@
     </td>
     <td class="text-wrap">
         {{ $voter->referer }}
+    </td>
+    <td class="text-wrap">
+        {{ $voter->lastVotedFor() }}
+        <small class="text-muted">
+            {{ $voter->created_at->diffForHumans() }}
+        </small>
     </td>
     <td>
 

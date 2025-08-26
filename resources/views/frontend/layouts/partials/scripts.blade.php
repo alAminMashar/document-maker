@@ -41,64 +41,10 @@
 <script src="{{ asset('assets/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
+<!-- FlipDown JS -->
+<script src="https://pbutcher.uk/flipdown/js/flipdown/flipdown.js"></script>
+
 {{-- Toastr Scrips --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-<script>
-    @if (Session::has('message'))
-        var type = "{{ Session::get('alert-type', 'info') }}"
-        switch (type) {
-            case 'info':
-
-                toastr.options.timeOut = 10000;
-                toastr.info("{{ Session::get('message') }}");
-                var audio = new Audio('audio.mp3');
-                audio.play();
-                break;
-            case 'success':
-
-                toastr.options.timeOut = 10000;
-                toastr.success("{{ Session::get('message') }}");
-                var audio = new Audio('audio.mp3');
-                audio.play();
-
-                break;
-            case 'warning':
-
-                toastr.options.timeOut = 10000;
-                toastr.warning("{{ Session::get('message') }}");
-                var audio = new Audio('audio.mp3');
-                audio.play();
-
-                break;
-            case 'error':
-
-                toastr.options.timeOut = 10000;
-                toastr.error("{{ Session::get('message') }}");
-                var audio = new Audio('audio.mp3');
-                audio.play();
-
-                break;
-        }
-    @endif
-</script>
-
-<!--Start of Tawk.to Script-->
-{{-- <script type="text/javascript">
-    var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-    (function() {
-        var s1 = document.createElement("script"),
-            s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/678e56673a8427326071ad7e/1ii2031u7';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-</script> --}}
-<!--End of Tawk.to Script-->
-{{-- <script src="https://static.elfsight.com/platform/platform.js" async></script> --}}
-{{-- Any additional scripts --}}
 @livewireScripts()
 @stack('scripts')

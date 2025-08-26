@@ -1,67 +1,21 @@
 <div>
-    <div class="col-md-12">
-        @if ($addCandidate || $updateCandidate)
-            @include('livewire.candidates.includes.create-modal')
-        @endif
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
 
-        @if ($addDocument)
-            @include('livewire.candidates.includes.upload-candidate-photo')
-        @endif
-    </div>
-
-    @include('livewire.candidates.components.search-canvas')
-
-    <div class="col-lg-12 grid-margin stretch-card">
-
-        <div class="card">
-            <div class="card-body">
-
-                @if (!$addCandidate && auth()->user()->can('candidates.store'))
-                    <button wire:click="addCandidate()" class="btn btn-info btn-sm float-end">
-                        <i class="mdi mdi-playlist-plus"></i>
-                        Add Candidate
-                    </button>
-                @endif
-
-                <h4 class="card-title text-primary">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="candidates-label">
+                <span class="fw-bold text-primary">
                     Candidates
-                </h4>
-                <p class="card-description"></p>
+                </span>
+            </button>
+        </li>
 
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Title</th>
-                            <th>Political Party</th>
-                            <th>Status</th>
-                            <th>Created At</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($candidates->count())
-                            @foreach ($candidates as $candidate)
-                                @include('livewire.candidates.includes.item-row', $candidate)
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="6" align="center">
-                                    No Records Found.
-                                </td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
+    </ul>
+    <div class="tab-content" id="myTabContent">
 
-                <br>
-                <div class="row">
-                    <div class="col">
-                        {{ $candidates->links() }}
-                    </div>
-                </div>
-
-            </div>
+        <div class="tab-pane fade show active" id="candidates-tab" role="tabpanel" aria-labelledby="candidates-label">
+            @include('livewire.candidates.tabs.candidates')
+            @include('livewire.candidates.tabs.documents')
         </div>
+
     </div>
 </div>

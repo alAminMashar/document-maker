@@ -28,9 +28,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         //Cron Job Here
-        $schedule->command('queue:work --timeout=3600 --stop-when-empty')
-        ->everyFiveMinutes()
+        $schedule->command('queue:work --queue=default,schedules,sessions --timeout=3600 --stop-when-empty')
+        ->everyMinute()
         ->withoutOverlapping();
+
     }
 
     /**

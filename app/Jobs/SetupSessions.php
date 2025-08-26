@@ -2,71 +2,72 @@
 
 namespace App\Jobs;
 
+use App\Models\Poll;
+use Illuminate\Bus\Batch;
+use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-
-use App\Models\Candidate;
-use App\Models\Poll;
-use App\Models\Voter;
-use App\Models\Vote;
+use Illuminate\Support\Facades\Bus;
+use Throwable;
 
 class SetupSessions implements ShouldQueue
 {
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $poll, $candidate, $votes_target, $number_of_sessions;
+    public $poll;
+    public $candidates;
+    public $targetVotes;
 
     /**
-     * Create a new job instance.
+     * Max votes per session job
      */
-    public function __construct(Poll $poll, Candidate $candidate, $votes_target, $number_of_sessions)
+    protected int $chunkSize = 100;
+
+    public function __construct(Poll $poll, $candidates, int $targetVotes)
     {
         $this->poll = $poll;
-        $this->candidate = $candidate;
-        $this->votes_target = $votes_target;
-        $this->number_of_sessions = $number_of_sessions;
+        $this->candidates = $candidates;
+        $this->targetVotes = $targetVotes;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        $this->dispatchSessions();
-    }
 
-    public function dispatchSessions()
-    {
+        $votePool = [];
 
-        for ($i=0; $i < $this->number_of_sessions; $i++) {
-            $this->setupSession();
+        foreach ($this->candidates as $candidate) {
+            // Convert percentage targets into actual votes
+            $target = $candidate->multiplier > 0
+                ? intval(($candidate->multiplier / 100) * $this->targetVotes)
+                : intval(1);
+
+            // Add candidate ID to pool repeated by target count
+            $votePool = array_merge(
+                $votePool,
+                array_fill(0, $target, $candidate->id)
+            );
         }
-    }
 
-    public function setupSession()
-    {
-        $session_target = ceil($this->votes_target/ $this->number_of_sessions);
-        $session_intervals = $this->sessionIntervalMinutes();
-        //dispatch session with delay
-        dispatch(
-            new VoteSession($this->poll, $this->candidate, $session_target)
-        )
-        ->delay(now()->addMinutes($session_intervals));
-    }
+        // Shuffle to randomize votes across candidates
+        shuffle($votePool);
 
-    public function sessionIntervalMinutes()
-    {
-        $duration_in_mins = $this->poll['duration']?? 0 * 60;
-        $session_intervals = $duration_in_mins/$this->number_of_sessions;
-        // Log::info('Voting data', [
-        //     'session_intervals'      =>  $session_intervals,
-        // ]);
-        return ceil($session_intervals);
+        // Break into smaller sessions
+        $chunks = array_chunk($votePool, $this->chunkSize);
+
+        // Create a job for each chunk
+        $jobs = collect($chunks)->map(
+            fn ($chunk) => new ExecuteSessionCommand($this->poll->id, $chunk)
+        );
+
+        // Dispatch as a batch
+        Bus::batch($jobs)
+            ->then(fn (Batch $batch) => \Log::info("SetupSessions batch {$batch->id} completed"))
+            ->catch(fn (Batch $batch, Throwable $e) => \Log::error("SetupSessions batch {$batch->id} failed", ['error' => $e->getMessage()]))
+            ->finally(fn (Batch $batch) => \Log::info("SetupSessions batch {$batch->id} finished"))
+            ->onQueue('sessions')
+            ->dispatch();
     }
 }
