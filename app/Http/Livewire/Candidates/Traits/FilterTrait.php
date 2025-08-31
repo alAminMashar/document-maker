@@ -69,7 +69,7 @@ trait FilterTrait
 
     public function updateCandidates()
     {
-        dispatch(new UpdateAllCandidates(3));
+        // dispatch(new UpdateAllCandidates(3));
     }
 
     public function generateReport()

@@ -11,7 +11,7 @@
             @if ($hasVoted || !$poll->active)
                 <p class="card-text mb-3 pb-10">
                     <span class="badge badge-info">
-                        {{ number_format($candidate->getVoteCount($poll->id)) }}&nbsp;
+                        {{ number_format($candidate->vote_count) }}&nbsp;
                         Votes
                     </span>
                 </p>

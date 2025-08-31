@@ -234,6 +234,24 @@ class Index extends Component
     }
 
 
+    public function generateRealVoteReports(Poll $poll)
+    {
+        try{
+            $poll->generateRealVoteReports();
+
+            $this->dispatchBrowserEvent('alert',[
+                "type"      =>  "success",
+                'message'   =>  "Successfuly dispatched report task"
+            ]);
+        }catch(\Exception $e){
+            $this->dispatchBrowserEvent('alert',[
+                "type"      =>  "error",
+                'message'   =>  "$e Something went wrong!"
+            ]);
+        }
+    }
+
+
      /**
      * delete specific Poll data from the topics table
      * @param mixed $id

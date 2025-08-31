@@ -34,7 +34,7 @@ class ExportVoterReport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
         $this->search          =  $filter_array['search'];
         $this->created_from    =  $filter_array['created_from'];
         $this->created_to      =  $filter_array['created_to'];
-        $this->poll             = Poll::find($this->poll_id);
+        $this->poll            =  Poll::find($this->poll_id);
         $this->start_id        =  $start_id;
         $this->end_id          =  $end_id;
     }
@@ -58,8 +58,7 @@ class ExportVoterReport extends \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder
     {
 
         $query = Voter::whereBetween('id', [$this->start_id, $this->end_id])
-        ->orderBy('created_at','DESC')
-        ->with('votes');
+        ->orderBy('created_at','DESC');
 
         $query->whereHas('votes', function($q){
             $q->where('poll_id', $this->poll_id);

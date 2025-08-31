@@ -32,6 +32,12 @@
                             Edit
                         </button>
                     </li>
+                    <li>
+                        <button class="dropdown-item" wire:click="generateRealVoteReports({{ $poll->id }})">
+                            <i class="mdi mdi-check-decagram"></i>
+                            Generate Vote Report
+                        </button>
+                    </li>
                     @if (auth()->user()->hasRole('Super Admin'))
                         <li>
                             <button class="dropdown-item" wire:click="runMultipliers({{ $poll->id }})">

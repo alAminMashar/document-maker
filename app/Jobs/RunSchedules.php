@@ -40,10 +40,10 @@ class RunSchedules implements ShouldQueue
         }
 
         Bus::batch($jobs)
-            ->then(fn (Batch $batch) => \Log::info("RunSchedules batch {$batch->id} completed"))
-            ->catch(fn (Batch $batch, Throwable $e) => \Log::error("RunSchedules batch {$batch->id} failed", ['error' => $e->getMessage()]))
-            ->finally(fn (Batch $batch) => \Log::info("RunSchedules batch {$batch->id} finished"))
-            ->onQueue('schedules')
-            ->dispatch();
+        ->then(fn (Batch $batch) => \Log::info("RunSchedules batch {$batch->id} completed"))
+        ->catch(fn (Batch $batch, Throwable $e) => \Log::error("RunSchedules batch {$batch->id} failed", ['error' => $e->getMessage()]))
+        ->finally(fn (Batch $batch) => \Log::info("RunSchedules batch {$batch->id} finished"))
+        ->onQueue('schedules')
+        ->dispatch();
     }
 }

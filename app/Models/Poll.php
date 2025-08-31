@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use App\Jobs\DispatchVoteReportJob;
 use App\Jobs\RunSchedules;
 use Carbon\Carbon;
+use Str;
 
 class Poll extends Model
 {
@@ -124,6 +126,11 @@ class Poll extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function generateRealVoteReports()
+    {
+        return dispatch(new DispatchVoteReportJob($this->id, Str::limit($this->title,100,'')));
     }
 
     public function runMultipliers()
